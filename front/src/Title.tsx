@@ -34,7 +34,7 @@ export default function Title() {
                         color="text.primary"
                         gutterBottom
                     >
-                        Travel Cheat Sheet
+                        Basic Words
                     </Typography>
                     <Typography
                         variant="h5"
@@ -42,8 +42,7 @@ export default function Title() {
                         color="text.secondary"
                         paragraph
                     >
-                        Well-organized survival information for making short
-                        trips into any country!
+                        Survival words for making short trips in any country!
                     </Typography>
                     <Stack
                         sx={{ pt: 4 }}
