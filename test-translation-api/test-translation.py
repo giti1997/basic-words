@@ -1,5 +1,5 @@
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../genuine-essence-364222-c4919dd38a2f.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../genuine-essence-364222-54dfa19feae0.json"
 
 def translate_text(target, text):
     """Translates text into the target language.
