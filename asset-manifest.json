@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/travel-cheat-sheet/static/js/main.32d52a3b.js",
-    "index.html": "/travel-cheat-sheet/index.html",
-    "main.32d52a3b.js.map": "/travel-cheat-sheet/static/js/main.32d52a3b.js.map"
+    "main.js": "/basic-words/static/js/main.d3cc62ab.js",
+    "index.html": "/basic-words/index.html",
+    "main.d3cc62ab.js.map": "/basic-words/static/js/main.d3cc62ab.js.map"
   },
   "entrypoints": [
-    "static/js/main.32d52a3b.js"
+    "static/js/main.d3cc62ab.js"
   ]
 }
