@@ -5,14 +5,14 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 
 export default function TopBar() {
-    return (
-        <AppBar position="relative">
-            <Toolbar>
-                <CameraIcon sx={{ mr: 2 }} />
-                <Typography variant="h6" color="inherit" noWrap>
-                    Album layout
-                </Typography>
-            </Toolbar>
-        </AppBar>
-    )
+  return (
+    <AppBar position="relative">
+      <Toolbar>
+        <CameraIcon sx={{ mr: 2 }} />
+        <Typography variant="h6" color="inherit" noWrap>
+          Album layout
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  )
 }

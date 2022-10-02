@@ -5,18 +5,18 @@ import { createRoot } from 'react-dom/client'
 
 import Footer from './Footer'
 import Title from './Title'
-import WordsList from './WordsList/WordsList'
+import WordsList from './WordsList'
 import theme from './theme'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement!)
 
 root.render(
-    <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {/* <TopBar /> */}
-        <Title />
-        <WordsList />
-        <Footer />
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {/* <TopBar /> */}
+    <Title />
+    <WordsList />
+    <Footer />
+  </ThemeProvider>
 )
