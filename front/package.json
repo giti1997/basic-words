@@ -1,7 +1,7 @@
 {
   "name": "basic-words",
   "version": "0.0.1",
-  "homepage": "https://giti1997.github.io/basic-words",
+  "homepage": "http://basic-words.com",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
