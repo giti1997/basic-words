@@ -1,12 +1,22 @@
 import { ArrowForward } from '@mui/icons-material'
-import { MenuItem, Select } from '@mui/material'
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Title() {
+    const [origin, setOrigin] = useState('United States')
+    const [destination, setDestination] = useState('France')
+
+    const handleChangeOrigin = (event: SelectChangeEvent) => {
+        setOrigin(event.target.value as string)
+    }
+    const handleChangeDestination = (event: SelectChangeEvent) => {
+        setDestination(event.target.value as string)
+    }
+
     return (
         <main>
             <Box
@@ -32,8 +42,8 @@ export default function Title() {
                         color="text.secondary"
                         paragraph
                     >
-                        Well-organized survival information for when you're
-                        making short trips into any country!
+                        Well-organized survival information for making short
+                        trips into any country!
                     </Typography>
                     <Stack
                         sx={{ pt: 4 }}
@@ -43,21 +53,25 @@ export default function Title() {
                         alignItems="center"
                     >
                         <Select
-                            labelId="source-language-label"
-                            id="source-language"
-                            value={'English'}
-                            label="Source"
+                            id="origin"
+                            value={origin}
+                            onChange={handleChangeOrigin}
                         >
-                            <MenuItem value={'English'}>English</MenuItem>
+                            <MenuItem value={'United States'}>
+                                United States
+                            </MenuItem>
+                            <MenuItem value={'France'}>France</MenuItem>
                         </Select>
                         <ArrowForward></ArrowForward>
                         <Select
-                            labelId="destination-language-label"
-                            id="destination-language"
-                            value={'Spanish'}
-                            label="Destination"
+                            id="destination"
+                            value={destination}
+                            onChange={handleChangeDestination}
                         >
-                            <MenuItem value={'Spanish'}>Spanish</MenuItem>
+                            <MenuItem value={'France'}>France</MenuItem>
+                            <MenuItem value={'United States'}>
+                                United States
+                            </MenuItem>
                         </Select>
                     </Stack>
                 </Container>
