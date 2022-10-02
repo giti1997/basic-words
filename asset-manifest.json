@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/basic-words/static/js/main.d3cc62ab.js",
-    "index.html": "/basic-words/index.html",
-    "main.d3cc62ab.js.map": "/basic-words/static/js/main.d3cc62ab.js.map"
+    "main.js": "/static/js/main.9895510c.js",
+    "index.html": "/index.html",
+    "main.9895510c.js.map": "/static/js/main.9895510c.js.map"
   },
   "entrypoints": [
-    "static/js/main.d3cc62ab.js"
+    "static/js/main.9895510c.js"
   ]
 }
