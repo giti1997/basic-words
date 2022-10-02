@@ -1,7 +1,7 @@
 {
-  "name": "travel-cheat-sheet",
+  "name": "basic-words",
   "version": "0.0.1",
-  "homepage": "https://giti1997.github.io/travel-cheat-sheet",
+  "homepage": "https://giti1997.github.io/basic-words",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
