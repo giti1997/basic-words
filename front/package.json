@@ -1,6 +1,7 @@
 {
-  "name": "travel-cheat-cheat",
+  "name": "travel-cheat-sheet",
   "version": "0.0.1",
+  "homepage": "https://giti1997.github.io/travel-cheat-sheet",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
@@ -15,6 +16,8 @@
     "typescript": "latest"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -33,6 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^3.3.0"
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "gh-pages": "^4.0.0"
   }
 }
