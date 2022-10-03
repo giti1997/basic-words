@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import React from 'react'
+import React, { FC } from 'react'
 
 function Copyright() {
   return (
@@ -16,7 +16,7 @@ function Copyright() {
   )
 }
 
-export default function Footer() {
+const Footer: FC = () => {
   return (
     <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
       <Typography variant="h6" align="center" gutterBottom>
@@ -34,3 +34,5 @@ export default function Footer() {
     </Box>
   )
 }
+
+export default Footer
