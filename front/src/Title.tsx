@@ -4,19 +4,21 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import React, { useState } from 'react'
+import React, { FC } from 'react'
 
-export default function Title() {
-  const [origin, setOrigin] = useState('United States')
-  const [destination, setDestination] = useState('France')
+type Props = {
+  origin: string
+  destination: string
+  handleChangeOrigin: (event: SelectChangeEvent) => void
+  handleChangeDestination: (event: SelectChangeEvent) => void
+}
 
-  const handleChangeOrigin = (event: SelectChangeEvent) => {
-    setOrigin(event.target.value as string)
-  }
-  const handleChangeDestination = (event: SelectChangeEvent) => {
-    setDestination(event.target.value as string)
-  }
-
+const Title: FC<Props> = ({
+  origin,
+  destination,
+  handleChangeOrigin,
+  handleChangeDestination,
+}) => {
   return (
     <main>
       <Box
@@ -70,3 +72,5 @@ export default function Title() {
     </main>
   )
 }
+
+export default Title
