@@ -1,4 +1,5 @@
 import os
+import ast
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../genuine-essence-364222-54dfa19feae0.json"
 
 def translate_text(target, text):
@@ -18,9 +19,21 @@ def translate_text(target, text):
     # Text can also be a sequence of strings, in which case this method
     # will return a sequence of results for each text.
     result = translate_client.translate(text, target_language=target)
+    return result["translatedText"]
 
-    print(u"Text: {}".format(result["input"]))
-    print(u"Translation: {}".format(result["translatedText"]))
-    print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
+#    print(u"Text: {}".format(result["input"]))
+#    print(u"Translation: {}".format(result["translatedText"]))
+#    print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
 
-translate_text("fy", "test")
+#print(translate_text("fr", "Hello!"))
+
+f = open("lan-dict.in", "r")
+lang_string = f.read()
+f.close()
+lang = ast.literal_eval(lang_string)
+
+g = open("hello.out", "a")
+for x in lang:
+    g.write(translate_text(lang[x], "Hello!") + "\n")
+g.close()
+
