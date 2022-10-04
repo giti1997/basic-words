@@ -7,8 +7,8 @@ import WordsList from './WordsList'
 import { WordTranslation } from './types'
 
 const Home: FC = () => {
-  const [origin, setOrigin] = useState('United States')
-  const [destination, setDestination] = useState('France')
+  const [origin, setOrigin] = useState('English')
+  const [destination, setDestination] = useState('French')
   const handleChangeOrigin = (event: SelectChangeEvent) => {
     setOrigin(event.target.value as string)
   }

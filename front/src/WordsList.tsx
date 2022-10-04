@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button'
+import { IconButton } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
+import { ReactComponent as ListenIcon } from './assets/listen.svg'
 import { WordTranslation } from './types'
 
 type Props = {
@@ -38,7 +39,9 @@ const WordsList: FC<Props> = ({ words }) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">View</Button>
+                <IconButton color="primary" aria-label="listen">
+                  <ListenIcon />
+                </IconButton>
               </CardActions>
             </Card>
           </Grid>

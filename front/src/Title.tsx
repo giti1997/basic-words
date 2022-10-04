@@ -54,8 +54,8 @@ const Title: FC<Props> = ({
             alignItems="center"
           >
             <Select id="origin" value={origin} onChange={handleChangeOrigin}>
-              <MenuItem value={'United States'}>United States</MenuItem>
-              <MenuItem value={'France'}>France</MenuItem>
+              <MenuItem value={'English'}>English</MenuItem>
+              <MenuItem value={'French'}>French</MenuItem>
             </Select>
             <ArrowForward></ArrowForward>
             <Select
@@ -63,8 +63,8 @@ const Title: FC<Props> = ({
               value={destination}
               onChange={handleChangeDestination}
             >
-              <MenuItem value={'France'}>France</MenuItem>
-              <MenuItem value={'United States'}>United States</MenuItem>
+              <MenuItem value={'French'}>French</MenuItem>
+              <MenuItem value={'English'}>English</MenuItem>
             </Select>
           </Stack>
         </Container>
