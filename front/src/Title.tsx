@@ -30,21 +30,18 @@ const Title: FC<Props> = ({
       >
         <Container maxWidth="sm">
           <Typography
-            component="h1"
-            variant="h2"
+            variant="h1"
             align="center"
-            color="text.primary"
             gutterBottom
           >
-            Basic Words
+            Essential expressions for traveling to any country
           </Typography>
           <Typography
-            variant="h5"
+            variant="subtitle1"
             align="center"
-            color="text.secondary"
             paragraph
           >
-            Survival words for making short trips in any country!
+            We grouped the most basic words you may need for a quick trip. In a clean and organized place, with audios included!
           </Typography>
           <Stack
             sx={{ pt: 4 }}
