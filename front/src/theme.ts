@@ -21,10 +21,6 @@ const theme = createTheme({
     secondary: {
       main: DEFAULT_COLORS.beauBlue,
     },
-    text: {
-      primary: DEFAULT_COLORS.richBlack,
-      secondary: DEFAULT_COLORS.gainsboro,
-    },
     error: {
       main: DEFAULT_COLORS.red,
     },
