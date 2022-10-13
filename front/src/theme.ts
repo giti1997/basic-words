@@ -1,4 +1,3 @@
-import { red } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 
 const DEFAULT_COLORS = {
@@ -17,30 +16,30 @@ const DEFAULT_COLORS = {
 const theme = createTheme({
   palette: {
     primary: {
-      main: DEFAULT_COLORS['richBlack'],
+      main: DEFAULT_COLORS.richBlack,
     },
     secondary: {
-      main: DEFAULT_COLORS['beauBlue'],
+      main: DEFAULT_COLORS.beauBlue,
     },
     text: {
-      primary: DEFAULT_COLORS['richBlack'],
-      secondary: DEFAULT_COLORS['gainsboro'],
+      primary: DEFAULT_COLORS.richBlack,
+      secondary: DEFAULT_COLORS.gainsboro,
     },
     error: {
-      main: DEFAULT_COLORS['red'],
+      main: DEFAULT_COLORS.red,
     },
   },
   typography: {
     fontFamily: 'Roboto',
     h1: {
-      fontSize: 64,
+      fontSize: 36,
       fontWeight: 'bold',
-      color: 'text.primary',
+      color: DEFAULT_COLORS.white,
     },
     subtitle1: {
-      fontSize: 24,
+      fontSize: 20,
       fontWeight: 'regular',
-      color: 'text.secondary',
+      color: DEFAULT_COLORS.gainsboro,
     },
   },
 })
