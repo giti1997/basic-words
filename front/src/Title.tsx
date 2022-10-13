@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
+import Image from './assets/background.png'
+
 type Props = {
   origin: string
   destination: string
@@ -23,25 +25,19 @@ const Title: FC<Props> = ({
     <main>
       <Box
         sx={{
-          bgcolor: 'background.paper',
           pt: 8,
           pb: 6,
+          backgroundImage: `url(${Image})`,
+          backgroundSize: '100%',
         }}
       >
         <Container maxWidth="sm">
-          <Typography
-            variant="h1"
-            align="center"
-            gutterBottom
-          >
+          <Typography variant="h1" align="center" gutterBottom>
             Essential expressions for traveling to any country
           </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            paragraph
-          >
-            We grouped the most basic words you may need for a quick trip. In a clean and organized place, with audios included!
+          <Typography variant="subtitle1" align="center" paragraph>
+            We grouped the most basic words you may need for a quick trip. In a
+            clean and organized place, with audios included!
           </Typography>
           <Stack
             sx={{ pt: 4 }}
