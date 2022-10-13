@@ -1,5 +1,5 @@
 import { ArrowForward } from '@mui/icons-material'
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { Autocomplete, SelectChangeEvent, TextField } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
@@ -22,47 +22,55 @@ const Title: FC<Props> = ({
   handleChangeDestination,
 }) => {
   return (
-    <main>
-      <Box
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      sx={{
+        backgroundImage: `url(${Image})`,
+        backgroundSize: '100%',
+      }}
+    >
+      <Container maxWidth="sm" sx={{ marginTop: 15, marginBottom: 10 }}>
+        <Typography variant="h1" align="center" gutterBottom>
+          Essential expressions for traveling to any country
+        </Typography>
+        <Typography variant="subtitle1" align="center" paragraph>
+          We grouped the most basic words you may need for a quick trip. In a
+          clean and organized place, with audios included!
+        </Typography>
+      </Container>
+
+      <Stack
         sx={{
-          pt: 8,
-          pb: 6,
-          backgroundImage: `url(${Image})`,
-          backgroundSize: '100%',
+          backgroundColor: 'background.default',
+          borderRadius: '10px',
         }}
+        maxWidth="sm"
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
       >
-        <Container maxWidth="sm">
-          <Typography variant="h1" align="center" gutterBottom>
-            Essential expressions for traveling to any country
-          </Typography>
-          <Typography variant="subtitle1" align="center" paragraph>
-            We grouped the most basic words you may need for a quick trip. In a
-            clean and organized place, with audios included!
-          </Typography>
-          <Stack
-            sx={{ pt: 4 }}
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Select id="origin" value={origin} onChange={handleChangeOrigin}>
-              <MenuItem value={'English'}>English</MenuItem>
-              <MenuItem value={'French'}>French</MenuItem>
-            </Select>
-            <ArrowForward></ArrowForward>
-            <Select
-              id="destination"
-              value={destination}
-              onChange={handleChangeDestination}
-            >
-              <MenuItem value={'French'}>French</MenuItem>
-              <MenuItem value={'English'}>English</MenuItem>
-            </Select>
-          </Stack>
-        </Container>
-      </Box>
-    </main>
+        <Autocomplete
+          disablePortal
+          id="source_language"
+          options={[{ label: 'English' }, { label: 'Français' }]}
+          renderInput={(params) => (
+            <TextField {...params} label="Source language" />
+          )}
+        />
+        <ArrowForward />
+        <Autocomplete
+          disablePortal
+          id="target_language"
+          options={[{ label: 'English' }, { label: 'Français' }]}
+          renderInput={(params) => (
+            <TextField {...params} label="Target language" />
+          )}
+        />
+      </Stack>
+    </Box>
   )
 }
 
