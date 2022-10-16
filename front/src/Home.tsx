@@ -1,4 +1,3 @@
-import { SelectChangeEvent } from '@mui/material'
 import React, { FC, useState } from 'react'
 
 import Footer from './Footer'
@@ -7,14 +6,9 @@ import WordsList from './WordsList'
 import { WordTranslation } from './types'
 
 const Home: FC = () => {
-  const [origin, setOrigin] = useState('English')
-  const [destination, setDestination] = useState('French')
-  const handleChangeOrigin = (event: SelectChangeEvent) => {
-    setOrigin(event.target.value as string)
-  }
-  const handleChangeDestination = (event: SelectChangeEvent) => {
-    setDestination(event.target.value as string)
-  }
+  const languages = ['English', 'Français']
+  const [sourceLanguage, setSourceLanguage] = useState(languages[0])
+  const [targetLanguage, setTargetLanguage] = useState(languages[1])
   const [words, setWords] = useState<WordTranslation[]>([
     { source: 'Hello', target: 'Bonjour' },
     { source: 'Sorry', target: 'Pardon' },
@@ -24,10 +18,11 @@ const Home: FC = () => {
   return (
     <main>
       <Title
-        origin={origin}
-        destination={destination}
-        handleChangeOrigin={handleChangeOrigin}
-        handleChangeDestination={handleChangeDestination}
+        sourceLanguage={sourceLanguage}
+        targetLanguage={targetLanguage}
+        setTargetLanguage={setTargetLanguage}
+        setSourceLanguage={setSourceLanguage}
+        languages={languages}
       />
       <WordsList words={words} />
       <Footer />

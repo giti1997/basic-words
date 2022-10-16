@@ -17,6 +17,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: DEFAULT_COLORS.richBlack,
+      light: DEFAULT_COLORS.charcoal,
     },
     secondary: {
       main: DEFAULT_COLORS.beauBlue,
