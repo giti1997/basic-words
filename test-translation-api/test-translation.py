@@ -1,5 +1,4 @@
 import os
-import ast
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../genuine-essence-364222-54dfa19feae0.json"
 
 def translate_text(target, text):
@@ -27,13 +26,15 @@ def translate_text(target, text):
 
 #print(translate_text("fr", "Hello!"))
 
-f = open("lan-dict.in", "r")
-lang_string = f.read()
-f.close()
-lang = ast.literal_eval(lang_string)
+import json
 
+json_file = open('lan-dict.json')
+lang = json.load(json_file)
+json_file.close()
+ 
 g = open("hello.out", "a")
 for x in lang:
     g.write(translate_text(lang[x], "Hello!") + "\n")
+#    g.write("Hello!\n")
 g.close()
 
