@@ -18,45 +18,37 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
       disableClearable
       id={id}
       forcePopupIcon={false}
+      renderInput={(params) => <TextField {...params} variant="standard" />}
       options={options}
-      // PopperComponent={(props) => {
-      //   console.log(props)
-      //   return (
-      //     <Popper
-      //       {...props}
-      //       style={{
-      //         textAlign: 'center',
-      //         width: props.style ? props.style.width : 0,
-      //       }}
-      //       // sx={{
-      //       //   textAlign: 'center',
-      //       //   width: '1000px',
-      //       //   '& .MuiAutocomplete-popper': { textAlign: 'center' },
-      //       // }}
-      //     />
-      //   )
-      // }}
-      // sx={{ paddingLeft: '20px', paddingRight: '20px' }}
       value={value}
       inputValue={inputValue}
       onChange={(_: any, newValue: string | null) => setValue(newValue ?? '')}
       onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
-      sx={{
-        '& .MuiAutocomplete-popper': { textAlign: 'center' },
-      }}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="standard"
-          sx={{
-            '& .MuiInputLabel-root': { color: 'primary.light' },
-            '& .MuiInput-input': { textAlign: 'center' },
-            '& .MuiInput-root:before': {
-              borderBottom: 0,
+      componentsProps={{
+        paper: {
+          sx: {
+            borderRadius: '10px',
+            zIndex: 1,
+            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+          },
+        },
+        popper: {
+          sx: {
+            '& .MuiAutocomplete-option': {
+              justifyContent: 'center',
             },
-          }}
-        />
-      )}
+          },
+        },
+      }}
+      sx={{
+        '& .MuiInputLabel-root': { color: 'primary.light' },
+        '& .MuiInput-input': { textAlign: 'center' },
+        '& .MuiInput-root:before': {
+          borderBottom: 0,
+        },
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+      }}
     />
   )
 }
