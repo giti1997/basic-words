@@ -21,6 +21,7 @@ const theme = createTheme({
     },
     secondary: {
       main: DEFAULT_COLORS.beauBlue,
+      light: DEFAULT_COLORS.lightSlateGray,
     },
     error: {
       main: DEFAULT_COLORS.red,
@@ -37,6 +38,16 @@ const theme = createTheme({
       fontSize: 20,
       fontWeight: 'regular',
       color: DEFAULT_COLORS.gainsboro,
+    },
+    body1: {
+      fontSize: 20,
+      fontWeight: 'regular',
+      color: DEFAULT_COLORS.richBlack,
+    },
+    body2: {
+      fontSize: 20,
+      fontWeight: 'regular',
+      color: DEFAULT_COLORS.white,
     },
   },
 })
