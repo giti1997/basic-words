@@ -1,10 +1,9 @@
-import { IconButton } from '@mui/material'
+import { Divider, IconButton, Stack } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import { Box } from '@mui/system'
 import React, { FC } from 'react'
 
 import { ReactComponent as ListenIcon } from './assets/listen.svg'
@@ -16,38 +15,62 @@ type Props = {
 
 const WordsList: FC<Props> = ({ words }) => {
   return (
-    <Container sx={{ py: 8 }} maxWidth="sm">
-      {/* End hero unit */}
-      <Grid container direction="column" spacing={4}>
-        {words.map(({ source, target }) => (
-          <Grid item>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Stack py={12} spacing={4} maxWidth="sm" width="100%">
+        {words.map(({ source, target }, i) => {
+          const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
+          const iconColor = i % 2 ? 'primary.main' : 'white'
+          const fontVariant = i % 2 ? 'body1' : 'body2'
+          return (
             <Card
               sx={{
-                height: '100%',
+                height: '60px',
                 display: 'flex',
                 flexDirection: 'row',
+                borderRadius: '10px',
+                zIndex: 1,
+                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                backgroundColor: backgroundColor,
               }}
             >
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h2">
+              <CardContent sx={{ width: '50%' }}>
+                <Typography
+                  gutterBottom
+                  variant={fontVariant}
+                  textAlign="center"
+                >
                   {source}
                 </Typography>
               </CardContent>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {target}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <IconButton color="primary" aria-label="listen">
-                  <ListenIcon />
-                </IconButton>
-              </CardActions>
+              <Divider
+                orientation="vertical"
+                sx={{
+                  alignSelf: 'center',
+                  height: '70%',
+                  borderColor: 'secondary.light',
+                }}
+              />
+              <Box display="flex" justifyContent="center" width="50%">
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant={fontVariant}
+                    textAlign="center"
+                  >
+                    {target}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton aria-label="listen">
+                    <ListenIcon stroke={iconColor} />
+                  </IconButton>
+                </CardActions>
+              </Box>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+          )
+        })}
+      </Stack>
+    </Box>
   )
 }
 
