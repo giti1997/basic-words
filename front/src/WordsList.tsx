@@ -7,6 +7,7 @@ import { Box } from '@mui/system'
 import React, { FC } from 'react'
 
 import { ReactComponent as ListenIcon } from './assets/listen.svg'
+import theme from './theme'
 import { WordTranslation } from './types'
 
 type Props = {
@@ -19,12 +20,14 @@ const WordsList: FC<Props> = ({ words }) => {
       <Stack py={12} spacing={4} maxWidth="sm" width="100%">
         {words.map(({ source, target }, i) => {
           const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
-          const iconColor = i % 2 ? 'primary.main' : 'white'
+          const iconBackgroundColor =
+            i % 2 ? theme.palette.primary.main : theme.palette.secondary.main
+          const iconColor = i % 2 ? 'white' : theme.palette.primary.main
           const fontVariant = i % 2 ? 'body1' : 'body2'
           return (
             <Card
               sx={{
-                height: '60px',
+                height: '70px',
                 display: 'flex',
                 flexDirection: 'row',
                 borderRadius: '10px',
@@ -33,12 +36,15 @@ const WordsList: FC<Props> = ({ words }) => {
                 backgroundColor: backgroundColor,
               }}
             >
-              <CardContent sx={{ width: '50%' }}>
-                <Typography
-                  gutterBottom
-                  variant={fontVariant}
-                  textAlign="center"
-                >
+              <CardContent
+                sx={{
+                  width: '50%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography variant={fontVariant} textAlign="center">
                   {source}
                 </Typography>
               </CardContent>
@@ -50,18 +56,32 @@ const WordsList: FC<Props> = ({ words }) => {
                   borderColor: 'secondary.light',
                 }}
               />
-              <Box display="flex" justifyContent="flex-end" width="50%">
-                <CardContent sx={{ margin: '0 auto' }}>
-                  <Typography
-                    gutterBottom
-                    variant={fontVariant}
-                    textAlign="center"
-                  >
+              <Box
+                width="50%"
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="center"
+              >
+                <CardContent
+                  sx={{
+                    margin: '0 auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography variant={fontVariant} textAlign="center">
                     {target}
                   </Typography>
                 </CardContent>
                 <CardActions sx={{ position: 'absolute' }}>
-                  <IconButton aria-label="listen">
+                  <IconButton
+                    aria-label="listen"
+                    sx={{
+                      backgroundColor: iconBackgroundColor,
+                      marginRight: '10px',
+                    }}
+                  >
                     <ListenIcon stroke={iconColor} />
                   </IconButton>
                 </CardActions>
