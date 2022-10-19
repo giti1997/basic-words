@@ -1,11 +1,11 @@
 import { ArrowForward } from '@mui/icons-material'
-import { SelectChangeEvent } from '@mui/material'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
 import CustomAutocomplete from './CustomAutocomplete'
 import Image from './assets/background.png'
+import { ReactComponent as Logo } from './assets/icon.svg'
 
 type Props = {
   sourceLanguage: string
@@ -32,11 +32,22 @@ const Title: FC<Props> = ({
     }}
   >
     <Box maxWidth="sm">
-      <Box marginTop="20vh" marginBottom="15vh">
-        <Typography variant="h1" align="center" gutterBottom>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        marginTop="10px"
+      >
+        <Logo width="35px" />
+        <Typography variant="caption" marginLeft="10px">
+          Basic Words
+        </Typography>
+      </Box>
+      <Box marginTop="15vh" marginBottom="15vh">
+        <Typography variant="h1" align="center">
           Essential expressions for traveling to any country
         </Typography>
-        <Typography variant="subtitle1" align="center" paragraph>
+        <Typography variant="subtitle1" align="center" paragraph marginTop={2}>
           We grouped the most basic words you may need for a quick trip. In a
           clean and organized place, with audios included!
         </Typography>
