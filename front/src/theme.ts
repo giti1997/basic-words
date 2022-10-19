@@ -30,13 +30,13 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto',
     h1: {
-      fontSize: 36,
+      fontSize: 42,
       fontWeight: 'bold',
       color: DEFAULT_COLORS.white,
     },
     subtitle1: {
       fontSize: 20,
-      fontWeight: 'regular',
+      fontWeight: 'light',
       color: DEFAULT_COLORS.gainsboro,
     },
     body1: {
@@ -47,6 +47,11 @@ const theme = createTheme({
     body2: {
       fontSize: 20,
       fontWeight: 'regular',
+      color: DEFAULT_COLORS.white,
+    },
+    caption: {
+      fontSize: 20,
+      fontWeight: 'light',
       color: DEFAULT_COLORS.white,
     },
   },
