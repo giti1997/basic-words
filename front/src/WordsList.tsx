@@ -50,8 +50,8 @@ const WordsList: FC<Props> = ({ words }) => {
                   borderColor: 'secondary.light',
                 }}
               />
-              <Box display="flex" justifyContent="center" width="50%">
-                <CardContent>
+              <Box display="flex" justifyContent="flex-end" width="50%">
+                <CardContent sx={{ margin: '0 auto' }}>
                   <Typography
                     gutterBottom
                     variant={fontVariant}
@@ -60,7 +60,7 @@ const WordsList: FC<Props> = ({ words }) => {
                     {target}
                   </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{ position: 'absolute' }}>
                   <IconButton aria-label="listen">
                     <ListenIcon stroke={iconColor} />
                   </IconButton>
