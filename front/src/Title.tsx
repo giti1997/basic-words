@@ -62,7 +62,7 @@ const Title: FC<Props> = ({
         height="70px"
         marginBottom="-30px"
         zIndex={1}
-        boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+        boxShadow={2}
         borderRadius="10px"
         sx={{
           backgroundColor: 'background.default',
@@ -78,6 +78,9 @@ const Title: FC<Props> = ({
           aria-label="switch languages"
           sx={{
             backgroundColor: 'primary.main',
+            '&:hover': {
+              backgroundColor: 'primary.contrastText',
+            },
             position: 'absolute',
             zIndex: 3,
             padding: '6px',
