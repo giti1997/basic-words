@@ -22,6 +22,10 @@ const WordsList: FC<Props> = ({ words }) => {
           const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
           const iconBackgroundColor =
             i % 2 ? theme.palette.primary.main : theme.palette.secondary.main
+          const iconBackgroundHoverColor =
+            i % 2
+              ? theme.palette.primary.contrastText
+              : theme.palette.secondary.contrastText
           const iconColor = i % 2 ? 'white' : theme.palette.primary.main
           const fontVariant = i % 2 ? 'body1' : 'body2'
           return (
@@ -32,7 +36,7 @@ const WordsList: FC<Props> = ({ words }) => {
                 flexDirection: 'row',
                 borderRadius: '10px',
                 zIndex: 1,
-                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                boxShadow: 2,
                 backgroundColor: backgroundColor,
               }}
             >
@@ -79,6 +83,9 @@ const WordsList: FC<Props> = ({ words }) => {
                     aria-label="listen"
                     sx={{
                       backgroundColor: iconBackgroundColor,
+                      '&:hover': {
+                        backgroundColor: iconBackgroundHoverColor,
+                      },
                       marginRight: '10px',
                       padding: '8px',
                       width: '35px',
