@@ -1,4 +1,3 @@
-import { ElectricalServicesOutlined } from '@mui/icons-material'
 import React, { FC, useState } from 'react'
 
 import Footer from './Footer'

@@ -11,6 +11,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",
+    "react-device-detect": "^2.2.2",
     "react-dom": "latest",
     "react-scripts": "latest",
     "typescript": "latest"

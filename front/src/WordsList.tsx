@@ -31,7 +31,7 @@ const WordsList: FC<Props> = ({ words }) => {
           return (
             <Card
               sx={{
-                height: '70px',
+                minHeight: '70px',
                 display: 'flex',
                 flexDirection: 'row',
                 borderRadius: '10px',
@@ -56,7 +56,7 @@ const WordsList: FC<Props> = ({ words }) => {
                 orientation="vertical"
                 sx={{
                   alignSelf: 'center',
-                  height: '70%',
+                  height: '50px',
                   borderColor: 'secondary.light',
                 }}
               />
@@ -69,6 +69,7 @@ const WordsList: FC<Props> = ({ words }) => {
                 <CardContent
                   sx={{
                     margin: '0 auto',
+                    maxWidth: '63%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -86,7 +87,7 @@ const WordsList: FC<Props> = ({ words }) => {
                       '&:hover': {
                         backgroundColor: iconBackgroundHoverColor,
                       },
-                      marginRight: '10px',
+                      marginRight: '7px',
                       padding: '8px',
                       width: '35px',
                       height: '35px',
