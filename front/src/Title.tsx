@@ -1,4 +1,4 @@
-import { ArrowForward } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
@@ -6,6 +6,7 @@ import React, { FC } from 'react'
 import CustomAutocomplete from './CustomAutocomplete'
 import Image from './assets/background.png'
 import { ReactComponent as Logo } from './assets/icon.svg'
+import { ReactComponent as SwitchArrows } from './assets/switch.svg'
 
 type Props = {
   sourceLanguage: string
@@ -57,9 +58,10 @@ const Title: FC<Props> = ({
         display="flex"
         flexDirection="row"
         alignItems="center"
+        justifyContent="center"
         height="70px"
         marginBottom="-30px"
-        zIndex="1"
+        zIndex={1}
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
         borderRadius="10px"
         sx={{
@@ -72,7 +74,23 @@ const Title: FC<Props> = ({
           setValue={setSourceLanguage}
           options={languages}
         />
-        <ArrowForward />
+        <IconButton
+          aria-label="switch languages"
+          sx={{
+            backgroundColor: 'primary.main',
+            position: 'absolute',
+            zIndex: 3,
+            padding: '6px',
+            width: '35px',
+            height: '35px',
+          }}
+          onClick={() => {
+            setSourceLanguage(targetLanguage)
+            setTargetLanguage(sourceLanguage)
+          }}
+        >
+          <SwitchArrows fill="white" />
+        </IconButton>
         <CustomAutocomplete
           id="targetLanguage"
           value={targetLanguage}
