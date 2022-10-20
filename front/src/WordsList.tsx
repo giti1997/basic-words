@@ -80,6 +80,9 @@ const WordsList: FC<Props> = ({ words }) => {
                     sx={{
                       backgroundColor: iconBackgroundColor,
                       marginRight: '10px',
+                      padding: '8px',
+                      width: '35px',
+                      height: '35px',
                     }}
                   >
                     <ListenIcon stroke={iconColor} />

@@ -1,4 +1,12 @@
-import { Autocomplete, Popper, TextField } from '@mui/material'
+import {
+  Autocomplete,
+  Popper,
+  TextField,
+  autocompleteClasses,
+  inputClasses,
+  inputLabelClasses,
+  styled,
+} from '@mui/material'
 import React, { FC, useState } from 'react'
 
 type Props = {
@@ -28,22 +36,21 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
         paper: {
           sx: {
             borderRadius: '10px',
-            zIndex: 1,
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
           },
         },
         popper: {
           sx: {
-            '& .MuiAutocomplete-option': {
+            [`& .${autocompleteClasses.option}`]: {
               justifyContent: 'center',
             },
           },
         },
       }}
       sx={{
-        '& .MuiInputLabel-root': { color: 'primary.light' },
-        '& .MuiInput-input': { textAlign: 'center' },
-        '& .MuiInput-root:before': {
+        [`& .${inputLabelClasses.root}`]: { color: 'primary.light' },
+        [`& .${inputClasses.input}`]: { textAlign: 'center' },
+        [`& .${inputClasses.root}:before`]: {
           borderBottom: 0,
         },
         // paddingLeft: '20px',
