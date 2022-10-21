@@ -1,3 +1,4 @@
+import { ArrowBack, Check } from '@mui/icons-material'
 import {
   Autocomplete,
   Button,
@@ -14,8 +15,6 @@ import { Box } from '@mui/system'
 import React, { FC, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 
-import { ReactComponent as ArrowLeft } from './assets/arrowLeft.svg'
-
 type Props = {
   id: string
   value: string
@@ -30,6 +29,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   const commonProps = {
     id: id,
     fullWidth: true,
+    disablePortal: true,
     value: value,
     inputValue: inputValue,
     onChange: (_: any, newValue: string | null) => {
@@ -56,24 +56,36 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
           </Typography>
         </Button>
         <Dialog fullScreen open={open} onClose={() => setOpen(false)}>
-          <Box display="flex">
+          <Box display="flex" alignItems="center">
             <IconButton
               color="inherit"
               onClick={() => setOpen(false)}
               aria-label="close"
-              sx={{ borderBottom: 1, borderRadius: 0 }}
+              sx={{ position: 'absolute', zIndex: 1 }}
             >
-              <ArrowLeft />
+              <ArrowBack />
             </IconButton>
             <Autocomplete
               {...commonProps}
               open={true}
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  <Check sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  {option}
+                </li>
+              )}
               componentsProps={{
                 paper: {
                   sx: {
                     borderRadius: '0px',
                     boxShadow: 0,
                   },
+                },
+              }}
+              sx={{
+                [`& .${inputClasses.root}`]: {
+                  paddingLeft: '40px',
+                  height: '50px',
                 },
               }}
             />
@@ -84,7 +96,6 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   } else {
     return (
       <Autocomplete
-        disablePortal
         {...commonProps}
         disableClearable
         componentsProps={{
