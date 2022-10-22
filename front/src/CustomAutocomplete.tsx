@@ -56,6 +56,8 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   const [inputValue, setInputValue] = useState(value)
   const { dialogOpen, handleDialogOpen, handleDialogClose } =
     useDialogHandles(id)
+  const placeholder = 'Search languages'
+  const noOptions = 'No options'
 
   // Common for mobile and desktop
   const commonProps = {
@@ -70,13 +72,15 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
         handleDialogClose()
       }
     },
-    onInputChange: (_: any, newInputValue: string) =>
-      setInputValue(newInputValue),
+    onInputChange: (_: any, newInputValue: string) => {
+      setInputValue(newInputValue)
+    },
     options: options,
     forcePopupIcon: false,
     renderInput: (params: TextFieldProps) => (
-      <TextField {...params} variant="standard" />
+      <TextField {...params} variant="standard" placeholder={placeholder} />
     ),
+    noOptionsText: <Box marginLeft="54px">{noOptions}</Box>,
   }
 
   if (isMobile) {
@@ -105,7 +109,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             </IconButton>
             <Autocomplete
               {...commonProps}
-              open={true}
+              open
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
                   <Check
@@ -127,6 +131,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
                   },
                 },
               }}
+              ListboxProps={{ style: { maxHeight: '100%' } }}
               sx={{
                 [`& .${inputClasses.root}`]: {
                   paddingLeft: '70px',
@@ -161,6 +166,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             sx: {
               [`& .${autocompleteClasses.option}`]: {
                 justifyContent: 'center',
+                textAlign: 'center',
               },
             },
           },
