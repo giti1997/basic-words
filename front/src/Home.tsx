@@ -38,7 +38,6 @@ const Home: FC = () => {
   const setSourceLanguageWithEffect = (language: string) => {
     setSourceLanguage(language)
     const newSourceWords = getWords(language)
-    console.log(newSourceWords, words)
     setWords((words) => {
       return words.map(({ target }, i) => ({
         source: newSourceWords[i],
