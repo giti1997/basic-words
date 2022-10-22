@@ -78,7 +78,12 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     options: options,
     forcePopupIcon: false,
     renderInput: (params: TextFieldProps) => (
-      <TextField {...params} variant="standard" placeholder={placeholder} />
+      <TextField
+        {...params}
+        variant="standard"
+        placeholder={placeholder}
+        sx={isMobile ? { position: 'fixed', backgroundColor: 'white' } : null}
+      />
     ),
     noOptionsText: <Box marginLeft="54px">{noOptions}</Box>,
   }
@@ -91,18 +96,24 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             {value}
           </Typography>
         </Button>
-        <Dialog fullScreen open={dialogOpen} onClose={handleDialogClose}>
+        <Dialog
+          fullScreen
+          open={dialogOpen}
+          onClose={handleDialogClose}
+          PaperProps={{ style: { overflowY: 'hidden' } }}
+        >
           <Box display="flex" alignItems="center">
             <IconButton
               color="inherit"
               onClick={handleDialogClose}
               aria-label="close"
               sx={{
-                position: 'absolute',
+                position: 'fixed',
                 zIndex: 1,
                 marginLeft: '15px',
                 width: '40px',
                 color: 'primary.light',
+                marginTop: '60px',
               }}
             >
               <ArrowBack />
@@ -128,10 +139,26 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
                   sx: {
                     borderRadius: '0px',
                     boxShadow: 0,
+                    height: '100%',
+                    [`& .${autocompleteClasses.noOptions}`]: {
+                      height: '100%',
+                    },
+                  },
+                },
+                popper: {
+                  sx: {
+                    height: '100%',
                   },
                 },
               }}
-              ListboxProps={{ style: { maxHeight: '100%' } }}
+              ListboxProps={{
+                style: {
+                  maxHeight: '100%',
+                  height: 'calc(100% - 60px)',
+                  width: '100%',
+                  position: 'absolute',
+                },
+              }}
               sx={{
                 [`& .${inputClasses.root}`]: {
                   paddingLeft: '70px',
