@@ -93,7 +93,13 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
               color="inherit"
               onClick={handleDialogClose}
               aria-label="close"
-              sx={{ position: 'absolute', zIndex: 1 }}
+              sx={{
+                position: 'absolute',
+                zIndex: 1,
+                marginLeft: '15px',
+                width: '40px',
+                color: 'primary.light',
+              }}
             >
               <ArrowBack />
             </IconButton>
@@ -102,7 +108,14 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
               open={true}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
-                  <Check sx={{ visibility: selected ? 'visible' : 'hidden' }} />
+                  <Check
+                    sx={{
+                      visibility: selected ? 'visible' : 'hidden',
+                      width: '40px',
+                      marginRight: '15px',
+                      color: 'primary.light',
+                    }}
+                  />
                   {option}
                 </li>
               )}
@@ -116,8 +129,15 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
               }}
               sx={{
                 [`& .${inputClasses.root}`]: {
-                  paddingLeft: '40px',
-                  height: '50px',
+                  paddingLeft: '70px',
+                  height: '60px',
+                  color: 'primary.main',
+                },
+                [`& .${inputClasses.root}:after`]: {
+                  borderBottom: 0,
+                },
+                [`& .${autocompleteClasses.endAdornment}`]: {
+                  marginRight: '15px',
                 },
               }}
             />
