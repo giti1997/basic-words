@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react'
 import Footer from './Footer'
 import Title from './Title'
 import WordsList from './WordsList'
+import languages from './assets/languages.json'
 import { WordTranslation } from './types'
 
 const getWords = (language: string): string[] => {
@@ -28,7 +29,6 @@ const getDefaultWords = (
 }
 
 const Home: FC = () => {
-  const languages = ['English', 'Français']
   const [sourceLanguage, setSourceLanguage] = useState(languages[0])
   const [targetLanguage, setTargetLanguage] = useState(languages[1])
   const [words, setWords] = useState<WordTranslation[]>(
