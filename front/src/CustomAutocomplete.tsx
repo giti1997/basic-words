@@ -14,6 +14,7 @@ import {
 import { Box } from '@mui/system'
 import React, { FC, useState } from 'react'
 import { isMobile } from 'react-device-detect'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type Props = {
   id: string
@@ -22,10 +23,41 @@ type Props = {
   options: string[]
 }
 
+const useDialogHandles = (
+  id: string
+): {
+  dialogOpen: boolean
+  handleDialogOpen: () => void
+  handleDialogClose: () => void
+} => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  let dialogOpen = false
+  if (location.state && `dialogOpen_${id}` in location.state) {
+    dialogOpen = location.state[`dialogOpen_${id}`]
+  }
+  const handleDialogOpen = () => {
+    if (isMobile) {
+      navigate(location.pathname, {
+        state: { [`dialogOpen_${id}`]: true },
+      })
+    }
+  }
+  const handleDialogClose = () => {
+    if (isMobile) {
+      window.history.back()
+    }
+  }
+
+  return { dialogOpen, handleDialogOpen, handleDialogClose }
+}
+
 const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   const [inputValue, setInputValue] = useState(value)
-  const [open, setOpen] = React.useState(false)
+  const { dialogOpen, handleDialogOpen, handleDialogClose } =
+    useDialogHandles(id)
 
+  // Common for mobile and desktop
   const commonProps = {
     id: id,
     fullWidth: true,
@@ -35,7 +67,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     onChange: (_: any, newValue: string | null) => {
       if (newValue) {
         setValue(newValue)
-        setOpen(false)
+        handleDialogClose()
       }
     },
     onInputChange: (_: any, newInputValue: string) =>
@@ -50,16 +82,16 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   if (isMobile) {
     return (
       <>
-        <Button fullWidth sx={{ height: '100%' }} onClick={() => setOpen(true)}>
+        <Button fullWidth sx={{ height: '100%' }} onClick={handleDialogOpen}>
           <Typography variant="body1" textTransform="none" fontWeight="regular">
             {value}
           </Typography>
         </Button>
-        <Dialog fullScreen open={open} onClose={() => setOpen(false)}>
+        <Dialog fullScreen open={dialogOpen} onClose={handleDialogClose}>
           <Box display="flex" alignItems="center">
             <IconButton
               color="inherit"
-              onClick={() => setOpen(false)}
+              onClick={handleDialogClose}
               aria-label="close"
               sx={{ position: 'absolute', zIndex: 1 }}
             >
