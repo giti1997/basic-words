@@ -93,7 +93,6 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     renderInput: (params: TextFieldProps) => (
       <TextField
         {...params}
-        autoFocus={isMobile}
         variant="standard"
         placeholder={placeholder}
         sx={isMobile ? { position: 'fixed', backgroundColor: 'white' } : null}
@@ -144,6 +143,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
               open
               onAnimationStart={() => {
                 document.getElementById(`${id}-option-0`)?.scrollIntoView()
+                document.getElementById(id)?.focus()
               }}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
