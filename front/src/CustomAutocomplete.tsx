@@ -82,7 +82,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
       newInputValue: string,
       reason: AutocompleteInputChangeReason
     ) => {
-      if (reason === 'reset') {
+      if (isMobile && reason === 'reset' && value === newInputValue) {
         setInputValue('')
       } else {
         setInputValue(newInputValue)
@@ -105,7 +105,14 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   if (isMobile) {
     return (
       <>
-        <Button fullWidth sx={{ height: '100%' }} onClick={handleDialogOpen}>
+        <Button
+          fullWidth
+          sx={{ height: '100%' }}
+          onClick={(e) => {
+            handleDialogOpen()
+            e.currentTarget.blur()
+          }}
+        >
           <Typography variant="body1" textTransform="none" fontWeight="regular">
             {value}
           </Typography>
@@ -135,6 +142,9 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             <Autocomplete
               {...commonProps}
               open
+              onAnimationStart={() => {
+                document.getElementById(`${id}-option-0`)?.scrollIntoView()
+              }}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
                   <Check
