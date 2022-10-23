@@ -1,6 +1,7 @@
 import { ArrowBack, Check } from '@mui/icons-material'
 import {
   Autocomplete,
+  AutocompleteInputChangeReason,
   Button,
   Dialog,
   IconButton,
@@ -24,7 +25,8 @@ type Props = {
 }
 
 const useDialogHandles = (
-  id: string
+  id: string,
+  setInputValue: (value: string) => void
 ): {
   dialogOpen: boolean
   handleDialogOpen: () => void
@@ -41,6 +43,7 @@ const useDialogHandles = (
       navigate(location.pathname, {
         state: { [`dialogOpen_${id}`]: true },
       })
+      setInputValue('')
     }
   }
   const handleDialogClose = () => {
@@ -54,8 +57,10 @@ const useDialogHandles = (
 
 const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   const [inputValue, setInputValue] = useState(value)
-  const { dialogOpen, handleDialogOpen, handleDialogClose } =
-    useDialogHandles(id)
+  const { dialogOpen, handleDialogOpen, handleDialogClose } = useDialogHandles(
+    id,
+    setInputValue
+  )
   const placeholder = 'Search languages'
   const noOptions = 'No options'
 
@@ -72,14 +77,23 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
         handleDialogClose()
       }
     },
-    onInputChange: (_: any, newInputValue: string) => {
-      setInputValue(newInputValue)
+    onInputChange: (
+      _: any,
+      newInputValue: string,
+      reason: AutocompleteInputChangeReason
+    ) => {
+      if (reason === 'reset') {
+        setInputValue('')
+      } else {
+        setInputValue(newInputValue)
+      }
     },
     options: options,
     forcePopupIcon: false,
     renderInput: (params: TextFieldProps) => (
       <TextField
         {...params}
+        autoFocus={isMobile}
         variant="standard"
         placeholder={placeholder}
         sx={isMobile ? { position: 'fixed', backgroundColor: 'white' } : null}
