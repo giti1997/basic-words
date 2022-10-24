@@ -206,6 +206,8 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             sx: {
               borderRadius: '10px',
               boxShadow: 2,
+              width: '300px',
+              translate: '-50px',
             },
           },
           popper: {
@@ -218,6 +220,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
           },
         }}
         sx={{
+          width: '200px',
           [`& .${inputLabelClasses.root}`]: { color: 'primary.light' },
           [`& .${inputClasses.input}`]: { textAlign: 'center' },
           [`& .${inputClasses.root}:before`]: {
