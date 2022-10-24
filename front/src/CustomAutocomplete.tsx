@@ -68,6 +68,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
   const commonProps = {
     id: id,
     fullWidth: true,
+    disableClearable: true,
     disablePortal: true,
     value: value,
     inputValue: inputValue,
@@ -82,9 +83,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
       newInputValue: string,
       reason: AutocompleteInputChangeReason
     ) => {
-      if (isMobile && reason === 'reset' && value === newInputValue) {
-        setInputValue('')
-      } else {
+      if (!isMobile || reason !== 'reset') {
         setInputValue(newInputValue)
       }
     },
@@ -192,9 +191,6 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
                 [`& .${inputClasses.root}:after`]: {
                   borderBottom: 0,
                 },
-                [`& .${autocompleteClasses.endAdornment}`]: {
-                  marginRight: '15px',
-                },
               }}
             />
           </Box>
@@ -205,7 +201,6 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     return (
       <Autocomplete
         {...commonProps}
-        disableClearable
         componentsProps={{
           paper: {
             sx: {
