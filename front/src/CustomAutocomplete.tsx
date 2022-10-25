@@ -180,6 +180,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
                   height: 'calc(100% - 60px)',
                   width: '100%',
                   position: 'absolute',
+                  paddingTop: 0,
                 },
               }}
               sx={{
