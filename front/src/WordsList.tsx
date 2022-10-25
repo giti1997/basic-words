@@ -2,27 +2,40 @@ import { Divider, Stack } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import React, { FC } from 'react'
 
 import ListenButton from './ListenButton'
-import { WordTranslation } from './types'
+import LoadableWord from './LoadableWord'
 
 type Props = {
-  words: WordTranslation[]
+  sourceWords: string[] | undefined
+  targetWords: string[] | undefined
+  audios: string[] | undefined
 }
 
-const WordsList: FC<Props> = ({ words }) => {
+const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
+  const words = sourceWords
+    ? sourceWords.map((sourceWord, i) => ({
+        source: sourceWord,
+        target: targetWords?.at(i),
+      }))
+    : targetWords
+    ? targetWords.map((targetWord) => ({
+        source: undefined,
+        target: targetWord,
+      }))
+    : Array(5).fill({ source: undefined, value: undefined })
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Stack py={12} spacing={4} maxWidth="min(90%, 600px)" width="100%">
         {words.map(({ source, target }, i) => {
           const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
-          const fontVariant = i % 2 ? 'body1' : 'body2'
+          const audio = audios?.at(i)
           return (
             <Card
-              key={source}
+              key={i}
               sx={{
                 minHeight: '70px',
                 display: 'flex',
@@ -41,9 +54,7 @@ const WordsList: FC<Props> = ({ words }) => {
                   alignItems: 'center',
                 }}
               >
-                <Typography variant={fontVariant} textAlign="center">
-                  {source}
-                </Typography>
+                <LoadableWord word={source} i={i} />
               </CardContent>
               <Divider
                 orientation="vertical"
@@ -68,12 +79,10 @@ const WordsList: FC<Props> = ({ words }) => {
                     justifyContent: 'center',
                   }}
                 >
-                  <Typography variant={fontVariant} textAlign="center">
-                    {target}
-                  </Typography>
+                  <LoadableWord word={target} i={i} />
                 </CardContent>
                 <CardActions sx={{ position: 'absolute' }}>
-                  <ListenButton colorType={i} />
+                  <ListenButton colorType={i} audio={audio} />
                 </CardActions>
               </Box>
             </Card>
