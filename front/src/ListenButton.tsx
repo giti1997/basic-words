@@ -1,4 +1,4 @@
-import { IconButton, keyframes } from '@mui/material'
+import { Avatar, CircularProgress, IconButton, keyframes } from '@mui/material'
 import React, { FC, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 
@@ -35,7 +35,8 @@ const getAnimationStyle = (isAnimating: boolean) => {
 
 const ListenButton: FC<{
   colorType: number
-}> = ({ colorType }) => {
+  audio: string | undefined
+}> = ({ colorType, audio }) => {
   const [isAnimating, setIsAnimating] = useState(false)
   const iconColor = colorType % 2 ? 'white' : theme.palette.primary.main
   const iconBackgroundColor =
@@ -45,32 +46,52 @@ const ListenButton: FC<{
       ? theme.palette.primary.contrastText
       : theme.palette.secondary.contrastText
 
-  return (
-    <IconButton
-      onClick={() => {
-        if (!isAnimating) {
-          setIsAnimating(true)
-          setTimeout(() => {
-            setIsAnimating(false)
-          }, 1000)
-        }
-      }}
-      aria-label="listen"
-      sx={{
-        backgroundColor: iconBackgroundColor,
-        '&:hover': {
-          backgroundColor: iconBackgroundHoverColor,
-        },
-        ...getAnimationStyle(isAnimating),
-        marginRight: '3px',
-        padding: isMobile ? '6px' : '9px',
-        width: isMobile ? '28px' : '35px',
-        height: isMobile ? '28px' : '35px',
-      }}
-    >
-      <ListenIcon stroke={iconColor} />
-    </IconButton>
-  )
+  if (audio == null) {
+    return (
+      <Avatar
+        sx={{
+          backgroundColor: iconBackgroundColor,
+          width: isMobile ? '28px' : '35px',
+          height: isMobile ? '28px' : '35px',
+          marginRight: '3px',
+        }}
+      >
+        <CircularProgress
+          size="50%"
+          sx={{
+            color: iconColor,
+          }}
+        />
+      </Avatar>
+    )
+  } else {
+    return (
+      <IconButton
+        onClick={() => {
+          if (!isAnimating) {
+            setIsAnimating(true)
+            setTimeout(() => {
+              setIsAnimating(false)
+            }, 1000)
+          }
+        }}
+        aria-label="listen"
+        sx={{
+          backgroundColor: iconBackgroundColor,
+          '&:hover': {
+            backgroundColor: iconBackgroundHoverColor,
+          },
+          ...getAnimationStyle(isAnimating),
+          marginRight: '3px',
+          padding: isMobile ? '6px' : '9px',
+          width: isMobile ? '28px' : '35px',
+          height: isMobile ? '28px' : '35px',
+        }}
+      >
+        <ListenIcon stroke={iconColor} />
+      </IconButton>
+    )
+  }
 }
 
 export default ListenButton

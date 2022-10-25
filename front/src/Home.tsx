@@ -1,59 +1,67 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 
 import Footer from './Footer'
 import Title from './Title'
 import WordsList from './WordsList'
 import languages from './assets/languages.json'
-import { WordTranslation } from './types'
 
-const getWords = (language: string): string[] => {
-  if (language == 'English') {
-    return ['Hello', 'Sorry', 'Please']
-  } else {
-    return ['Bonjour', 'Pardon', "S'il vous plaît"]
-  }
+const getWords = (language: string): Promise<string[]> => {
+  const words =
+    language == 'English'
+      ? ['Hello', 'Sorry', 'Please']
+      : ['Bonjour', 'Pardon', "S'il vous plaît"]
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(words)
+    }, 1000)
+  })
 }
 
-const getDefaultWords = (
-  sourceLanguage: string,
-  targetLanguage: string
-): WordTranslation[] => {
-  const sourceWords = getWords(sourceLanguage)
-  const targetWords = getWords(targetLanguage)
-
-  const words: WordTranslation[] = []
-  for (let i = 0; i < sourceWords.length; i++) {
-    words.push({ source: sourceWords[i], target: targetWords[i] })
-  }
-  return words
+const getAudios = (language: string): Promise<string[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(['', '', ''])
+    }, 2000)
+  })
 }
 
 const Home: FC = () => {
   const [sourceLanguage, setSourceLanguage] = useState(languages[0])
   const [targetLanguage, setTargetLanguage] = useState(languages[1])
-  const [words, setWords] = useState<WordTranslation[]>(
-    getDefaultWords(sourceLanguage, targetLanguage)
+  const [sourceWords, setSourceWords] = useState<string[] | undefined>(
+    undefined
   )
+  const [targetWords, setTargetWords] = useState<string[] | undefined>(
+    undefined
+  )
+  const [audios, setAudios] = useState<string[] | undefined>(undefined)
+
+  useEffect(() => {
+    getWords(sourceLanguage).then((words) => {
+      setSourceWords(words)
+    })
+    getWords(targetLanguage).then((words) => {
+      setTargetWords(words)
+    })
+    getAudios(targetLanguage).then((audios) => setAudios(audios))
+  }, [])
 
   const setSourceLanguageWithEffect = (language: string) => {
     setSourceLanguage(language)
-    const newSourceWords = getWords(language)
-    setWords((words) => {
-      return words.map(({ target }, i) => ({
-        source: newSourceWords[i],
-        target: target,
-      }))
+    setSourceWords(undefined)
+    getWords(language).then((words) => {
+      setSourceWords(words)
     })
   }
   const setTargetLanguageWithEffect = (language: string) => {
     setTargetLanguage(language)
-    const newTargetWords = getWords(language)
-    setWords((words) => {
-      return words.map(({ source }, i) => ({
-        source: source,
-        target: newTargetWords[i],
-      }))
+    setTargetWords(undefined)
+    setAudios(undefined)
+    getWords(language).then((words) => {
+      setTargetWords(words)
     })
+    getAudios(language).then((audios) => setAudios(audios))
   }
 
   return (
@@ -65,7 +73,11 @@ const Home: FC = () => {
         setTargetLanguage={setTargetLanguageWithEffect}
         languages={languages}
       />
-      <WordsList words={words} />
+      <WordsList
+        sourceWords={sourceWords}
+        targetWords={targetWords}
+        audios={audios}
+      />
       <Footer />
     </main>
   )

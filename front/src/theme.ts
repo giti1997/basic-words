@@ -25,6 +25,7 @@ const theme = createTheme({
     secondary: {
       main: DEFAULT_COLORS.beauBlue,
       light: DEFAULT_COLORS.lightSlateGray,
+      dark: DEFAULT_COLORS.gainsboro,
       contrastText: DEFAULT_COLORS.beauBlueToned,
     },
     error: {
