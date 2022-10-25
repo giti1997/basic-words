@@ -17,7 +17,7 @@ type Props = {
 const WordsList: FC<Props> = ({ words }) => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Stack py={12} spacing={4} maxWidth="sm" width="100%">
+      <Stack py={12} spacing={4} maxWidth="min(90%, 600px)" width="100%">
         {words.map(({ source, target }, i) => {
           const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
           const iconBackgroundColor =

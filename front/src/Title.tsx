@@ -31,14 +31,14 @@ const Title: FC<Props> = ({
       backgroundSize: 'cover',
     }}
   >
-    <Box maxWidth="sm">
+    <Box maxWidth="min(90%, 600px)">
       <Box
         display="flex"
         alignItems="center"
         justifyContent="center"
         marginTop="10px"
       >
-        <Logo width="35px" />
+        <Logo width="min(35px, 8vw)" />
         <Typography variant="caption" marginLeft="10px">
           Basic Words
         </Typography>
