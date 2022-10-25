@@ -1,4 +1,7 @@
-<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-	<path d="M2.75 7.56252V14.4375M6.875 5.27085V16.7292M11 2.97919V19.0209M15.125 5.27085V16.7292M19.25 7.56252V14.4375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+	<line id="line1" x1="10" x2="10" y1="30" y2="70" stroke-width="10" stroke-linecap="round" />
+	<line id="line2" x1="30" x2="30" y1="20" y2="80" stroke-width="10" stroke-linecap="round" />
+	<line id="line3" x1="50" x2="50" y1="5" y2="95" stroke-width="10" stroke-linecap="round" />
+	<line id="line4" x1="70" x2="70" y1="20" y2="80" stroke-width="10" stroke-linecap="round" />
+	<line id="line5" x1="90" x2="90" y1="30" y2="70" stroke-width="10" stroke-linecap="round" />
 </svg>
-	

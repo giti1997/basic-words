@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles'
 
 const DEFAULT_COLORS = {
   richBlack: '#111F2A',
-  richBlackToned: '#3f3f3f',
+  richBlackToned: '#6A7987',
   charcoal: '#354045',
   lightSlateGray: '#82909A',
   silverChalice: '#ABB4B9',

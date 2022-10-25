@@ -1,4 +1,4 @@
-import { Divider, IconButton, Stack } from '@mui/material'
+import { Divider, Stack } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -6,8 +6,7 @@ import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import React, { FC } from 'react'
 
-import { ReactComponent as ListenIcon } from './assets/listen.svg'
-import theme from './theme'
+import ListenButton from './ListenButton'
 import { WordTranslation } from './types'
 
 type Props = {
@@ -20,16 +19,10 @@ const WordsList: FC<Props> = ({ words }) => {
       <Stack py={12} spacing={4} maxWidth="min(90%, 600px)" width="100%">
         {words.map(({ source, target }, i) => {
           const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
-          const iconBackgroundColor =
-            i % 2 ? theme.palette.primary.main : theme.palette.secondary.main
-          const iconBackgroundHoverColor =
-            i % 2
-              ? theme.palette.primary.contrastText
-              : theme.palette.secondary.contrastText
-          const iconColor = i % 2 ? 'white' : theme.palette.primary.main
           const fontVariant = i % 2 ? 'body1' : 'body2'
           return (
             <Card
+              key={source}
               sx={{
                 minHeight: '70px',
                 display: 'flex',
@@ -80,21 +73,7 @@ const WordsList: FC<Props> = ({ words }) => {
                   </Typography>
                 </CardContent>
                 <CardActions sx={{ position: 'absolute' }}>
-                  <IconButton
-                    aria-label="listen"
-                    sx={{
-                      backgroundColor: iconBackgroundColor,
-                      '&:hover': {
-                        backgroundColor: iconBackgroundHoverColor,
-                      },
-                      marginRight: '7px',
-                      padding: '8px',
-                      width: '35px',
-                      height: '35px',
-                    }}
-                  >
-                    <ListenIcon stroke={iconColor} />
-                  </IconButton>
+                  <ListenButton colorType={i} />
                 </CardActions>
               </Box>
             </Card>
