@@ -34,27 +34,27 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Roboto',
     h1: {
-      fontSize: 42,
+      fontSize: "min(42px, 7vw)",
       fontWeight: 'bold',
       color: DEFAULT_COLORS.white,
     },
     subtitle1: {
-      fontSize: 20,
+      fontSize: "min(20px, 4vw)",
       fontWeight: 'light',
       color: DEFAULT_COLORS.gainsboro,
     },
     body1: {
-      fontSize: 20,
+      fontSize: "min(20px, 4vw)",
       fontWeight: 'regular',
       color: DEFAULT_COLORS.richBlack,
     },
     body2: {
-      fontSize: 20,
+      fontSize: "min(20px, 4vw)",
       fontWeight: 'regular',
       color: DEFAULT_COLORS.white,
     },
     caption: {
-      fontSize: 20,
+      fontSize: "min(20px, 4vw)",
       fontWeight: 'light',
       color: DEFAULT_COLORS.white,
     },
