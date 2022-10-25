@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
 import CustomAutocomplete from './CustomAutocomplete'
-import Image from './assets/background.png'
 import { ReactComponent as Logo } from './assets/icon.svg'
 import { ReactComponent as SwitchArrows } from './assets/switch.svg'
 
@@ -28,8 +27,8 @@ const Title: FC<Props> = ({
     flexDirection="column"
     alignItems="center"
     sx={{
-      backgroundImage: `url(${Image})`,
-      backgroundSize: '100%',
+      backgroundImage: 'url(/background.jpeg)',
+      backgroundSize: 'cover',
     }}
   >
     <Box maxWidth="sm">
