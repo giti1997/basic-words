@@ -11,7 +11,7 @@ import LoadableWord from './LoadableWord'
 type Props = {
   sourceWords: string[] | undefined
   targetWords: string[] | undefined
-  audios: string[] | undefined
+  audios: string[] | undefined | null
 }
 
 const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
@@ -31,7 +31,7 @@ const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
     <Stack spacing={4} maxWidth="min(90%, 600px)" width="100%">
       {words.map(({ source, target }, i) => {
         const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
-        const audio = audios?.at(i)
+        const audio = audios === null ? null : audios?.at(i)
         return (
           <Card
             key={i}
@@ -72,17 +72,22 @@ const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
               <CardContent
                 sx={{
                   margin: '0 auto',
-                  maxWidth: '63%',
+                  maxWidth: audio === null ? '100%' : '63%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  '&:last-child': {
+                    padding: 0,
+                  },
                 }}
               >
                 <LoadableWord word={target} i={i} />
               </CardContent>
-              <CardActions sx={{ position: 'absolute' }}>
-                <ListenButton colorType={i} audio={audio} />
-              </CardActions>
+              {audio !== null && (
+                <CardActions sx={{ position: 'absolute' }}>
+                  <ListenButton colorType={i} audio={audio} />
+                </CardActions>
+              )}
             </Box>
           </Card>
         )
