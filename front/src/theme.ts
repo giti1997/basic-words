@@ -11,7 +11,6 @@ const DEFAULT_COLORS = {
   gainsboro: '#DDE5E9',
   lightGray: '#EFEFEF',
   white: '#FFFFFF',
-  red: '#FF7676',
 }
 
 // A custom theme for this app
@@ -27,9 +26,6 @@ const theme = createTheme({
       light: DEFAULT_COLORS.lightSlateGray,
       dark: DEFAULT_COLORS.gainsboro,
       contrastText: DEFAULT_COLORS.beauBlueToned,
-    },
-    error: {
-      main: DEFAULT_COLORS.red,
     },
   },
   typography: {

@@ -20,7 +20,7 @@ const getWords = (language: string): Promise<string[] | null> => {
   })
 }
 
-const getAudios = (language: string): Promise<string[]> => {
+const getAudios = (language: string): Promise<string[] | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(['', '', ''])
@@ -29,15 +29,15 @@ const getAudios = (language: string): Promise<string[]> => {
 }
 
 const Home: FC = () => {
-  const [sourceLanguage, setSourceLanguage] = useState(languages[0])
-  const [targetLanguage, setTargetLanguage] = useState(languages[1])
+  const [sourceLanguage, setSourceLanguage] = useState('English')
+  const [targetLanguage, setTargetLanguage] = useState('French')
   const [sourceWords, setSourceWords] = useState<string[] | undefined | null>(
     undefined
   )
   const [targetWords, setTargetWords] = useState<string[] | undefined | null>(
     undefined
   )
-  const [audios, setAudios] = useState<string[] | undefined>(undefined)
+  const [audios, setAudios] = useState<string[] | undefined | null>(undefined)
 
   useEffect(() => {
     getWords(sourceLanguage).then((words) => {
@@ -70,6 +70,8 @@ const Home: FC = () => {
     setTargetLanguage(sourceLanguage)
     setSourceWords(targetWords)
     setTargetWords(sourceWords)
+    setAudios(undefined)
+    getAudios(targetLanguage).then((audios) => setAudios(audios))
   }
 
   return (
@@ -113,7 +115,7 @@ const Home: FC = () => {
               width: '100%',
               maxWidth: 'min(90%, 600px)',
               [`& .${alertClasses.icon}`]: {
-                paddingTop: '10px',
+                paddingTop: '11px',
               },
             }}
           >
@@ -123,11 +125,31 @@ const Home: FC = () => {
             </Typography>
           </Alert>
         ) : (
-          <WordsList
-            sourceWords={sourceWords}
-            targetWords={targetWords}
-            audios={audios}
-          />
+          <>
+            {audios === null && (
+              <Alert
+                severity="warning"
+                sx={{
+                  borderRadius: '10px',
+                  width: '100%',
+                  maxWidth: 'min(90%, 600px)',
+                  marginBottom: '5vh',
+                  [`& .${alertClasses.icon}`]: {
+                    paddingTop: '12px',
+                  },
+                }}
+              >
+                <Typography variant="body1" color="inherit">
+                  {`We're sorry, speech data is currently not available in ${targetLanguage}.`}
+                </Typography>
+              </Alert>
+            )}
+            <WordsList
+              sourceWords={sourceWords}
+              targetWords={targetWords}
+              audios={audios}
+            />
+          </>
         )}
       </Box>
       <Footer />
