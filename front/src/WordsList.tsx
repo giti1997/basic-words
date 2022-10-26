@@ -28,68 +28,66 @@ const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
     : Array(5).fill({ source: undefined, value: undefined })
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      <Stack py={12} spacing={4} maxWidth="min(90%, 600px)" width="100%">
-        {words.map(({ source, target }, i) => {
-          const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
-          const audio = audios?.at(i)
-          return (
-            <Card
-              key={i}
+    <Stack spacing={4} maxWidth="min(90%, 600px)" width="100%">
+      {words.map(({ source, target }, i) => {
+        const backgroundColor = i % 2 ? 'secondary.main' : 'primary.main'
+        const audio = audios?.at(i)
+        return (
+          <Card
+            key={i}
+            sx={{
+              minHeight: '70px',
+              display: 'flex',
+              flexDirection: 'row',
+              borderRadius: '10px',
+              zIndex: 1,
+              boxShadow: 2,
+              backgroundColor: backgroundColor,
+            }}
+          >
+            <CardContent
               sx={{
-                minHeight: '70px',
+                width: '50%',
                 display: 'flex',
-                flexDirection: 'row',
-                borderRadius: '10px',
-                zIndex: 1,
-                boxShadow: 2,
-                backgroundColor: backgroundColor,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
+            >
+              <LoadableWord word={source} i={i} />
+            </CardContent>
+            <Divider
+              orientation="vertical"
+              sx={{
+                alignSelf: 'center',
+                height: '50px',
+                borderColor: 'secondary.light',
+              }}
+            />
+            <Box
+              width="50%"
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="center"
             >
               <CardContent
                 sx={{
-                  width: '50%',
+                  margin: '0 auto',
+                  maxWidth: '63%',
                   display: 'flex',
-                  justifyContent: 'center',
                   alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                <LoadableWord word={source} i={i} />
+                <LoadableWord word={target} i={i} />
               </CardContent>
-              <Divider
-                orientation="vertical"
-                sx={{
-                  alignSelf: 'center',
-                  height: '50px',
-                  borderColor: 'secondary.light',
-                }}
-              />
-              <Box
-                width="50%"
-                display="flex"
-                justifyContent="flex-end"
-                alignItems="center"
-              >
-                <CardContent
-                  sx={{
-                    margin: '0 auto',
-                    maxWidth: '63%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <LoadableWord word={target} i={i} />
-                </CardContent>
-                <CardActions sx={{ position: 'absolute' }}>
-                  <ListenButton colorType={i} audio={audio} />
-                </CardActions>
-              </Box>
-            </Card>
-          )
-        })}
-      </Stack>
-    </Box>
+              <CardActions sx={{ position: 'absolute' }}>
+                <ListenButton colorType={i} audio={audio} />
+              </CardActions>
+            </Box>
+          </Card>
+        )
+      })}
+    </Stack>
   )
 }
 

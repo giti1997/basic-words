@@ -21,7 +21,7 @@ const LoadableWord: FC<Props> = ({ word, i }) => {
         variant="rounded"
         animation="wave"
         width="min(100px, 15vw)"
-        height="20px"
+        height="16px"
         sx={{ backgroundColor: skeletonColor }}
       />
     )

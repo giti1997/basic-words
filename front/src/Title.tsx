@@ -12,6 +12,7 @@ type Props = {
   targetLanguage: string
   setSourceLanguage: (value: string) => void
   setTargetLanguage: (value: string) => void
+  switchLanguages: () => void
   languages: string[]
 }
 
@@ -20,6 +21,7 @@ const Title: FC<Props> = ({
   targetLanguage,
   setSourceLanguage,
   setTargetLanguage,
+  switchLanguages,
   languages,
 }) => (
   <Box
@@ -86,10 +88,7 @@ const Title: FC<Props> = ({
             width: '35px',
             height: '35px',
           }}
-          onClick={() => {
-            setSourceLanguage(targetLanguage)
-            setTargetLanguage(sourceLanguage)
-          }}
+          onClick={switchLanguages}
         >
           <SwitchArrows fill="white" />
         </IconButton>
