@@ -35,24 +35,29 @@ const theme = createTheme({
       fontWeight: 'bold',
       color: DEFAULT_COLORS.white,
     },
+    h6: {
+      fontSize: 'min(16px, 3vw)',
+      fontWeight: 'normal',
+      color: DEFAULT_COLORS.white,
+    },
     subtitle1: {
       fontSize: 'min(20px, 4vw)',
-      fontWeight: 'light',
+      fontWeight: 'lighter',
       color: DEFAULT_COLORS.gainsboro,
     },
     body1: {
       fontSize: 'min(20px, 4vw)',
-      fontWeight: 'regular',
+      fontWeight: 'normal',
       color: DEFAULT_COLORS.richBlack,
     },
     body2: {
       fontSize: 'min(20px, 4vw)',
-      fontWeight: 'regular',
+      fontWeight: 'normal',
       color: DEFAULT_COLORS.white,
     },
     caption: {
       fontSize: 'min(20px, 4vw)',
-      fontWeight: 'light',
+      fontWeight: 'normal',
       color: DEFAULT_COLORS.white,
     },
   },

@@ -3,33 +3,27 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
 const Footer: FC = () => (
-  <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-    <Typography variant="h6" align="center" gutterBottom>
-      Footer
+  <Box sx={{ backgroundColor: 'primary.main', padding: 3 }} component="footer">
+    <Link href="about">
+      <Typography variant="h6" align="center">
+        About
+      </Typography>
+    </Link>
+    <Link href="privacy_policy">
+      <Typography variant="h6" align="center">
+        Privacy Policy
+      </Typography>
+    </Link>
+    <Link href="terms_of_service">
+      <Typography variant="h6" align="center">
+        Terms of Service
+      </Typography>
+    </Link>
+
+    <Typography variant="h6" align="center" marginTop={2}>
+      © {new Date().getFullYear()} - All rights reserved
     </Typography>
-    <Typography
-      variant="subtitle1"
-      align="center"
-      color="text.secondary"
-      component="p"
-    >
-      Something here to give the footer a purpose!
-    </Typography>
-    <Copyright />
   </Box>
 )
 
