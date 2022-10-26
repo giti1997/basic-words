@@ -2,6 +2,7 @@ import { Alert, Button, Typography, alertClasses } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { FC, useEffect, useState } from 'react'
 
+import CustomAlert from './CustomAlert'
 import Footer from './Footer'
 import Title from './Title'
 import WordsList from './WordsList'
@@ -91,58 +92,21 @@ const Home: FC = () => {
         paddingY={12}
       >
         {sourceWords === null || targetWords === null ? (
-          <Alert
+          <CustomAlert
             severity="error"
-            action={
-              <Button
-                color="inherit"
-                onClick={() => {
-                  if (sourceWords === null) {
-                    setSourceLanguageWithEffect(sourceLanguage)
-                  }
-                  if (targetWords === null) {
-                    setTargetLanguageWithEffect(targetLanguage)
-                  }
-                }}
-              >
-                <Typography variant="body1" color="inherit">
-                  Try again
-                </Typography>
-              </Button>
-            }
-            sx={{
-              borderRadius: '10px',
-              width: '100%',
-              maxWidth: 'min(90%, 600px)',
-              [`& .${alertClasses.icon}`]: {
-                paddingTop: '11px',
-              },
+            onRetry={() => {
+              if (sourceWords === null) {
+                setSourceLanguageWithEffect(sourceLanguage)
+              }
+              if (targetWords === null) {
+                setTargetLanguageWithEffect(targetLanguage)
+              }
             }}
-          >
-            <Typography variant="body1" color="inherit">
-              We're very sorry, there was an error loading the translation data.
-              Please try again.
-            </Typography>
-          </Alert>
+          />
         ) : (
           <>
             {audios === null && (
-              <Alert
-                severity="warning"
-                sx={{
-                  borderRadius: '10px',
-                  width: '100%',
-                  maxWidth: 'min(90%, 600px)',
-                  marginBottom: '5vh',
-                  [`& .${alertClasses.icon}`]: {
-                    paddingTop: '12px',
-                  },
-                }}
-              >
-                <Typography variant="body1" color="inherit">
-                  {`We're sorry, speech data is currently not available in ${targetLanguage}.`}
-                </Typography>
-              </Alert>
+              <CustomAlert severity="warning" targetLanguage={targetLanguage} />
             )}
             <WordsList
               sourceWords={sourceWords}
