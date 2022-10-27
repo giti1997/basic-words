@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
 import CustomAutocomplete from './CustomAutocomplete'
-import { ReactComponent as Logo } from './assets/icon.svg'
+import Logo from './Logo'
 import { ReactComponent as SwitchArrows } from './assets/switch.svg'
 
 type Props = {
@@ -34,17 +34,7 @@ const Title: FC<Props> = ({
     }}
   >
     <Box maxWidth="min(90%, 600px)">
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        marginTop="10px"
-      >
-        <Logo width="min(35px, 8vw)" />
-        <Typography variant="caption" marginLeft="10px">
-          Basic Words
-        </Typography>
-      </Box>
+      <Logo />
       <Box marginTop="15vh" marginBottom="15vh">
         <Typography variant="h1" align="center">
           Essential expressions for traveling to any country
