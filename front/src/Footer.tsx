@@ -4,18 +4,21 @@ import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
 
 const Footer: FC = () => (
-  <Box sx={{ backgroundColor: 'primary.main', padding: 3 }} component="footer">
-    <Link href="about">
-      <Typography variant="h6" align="center">
-        About
-      </Typography>
-    </Link>
-    <Link href="privacy_policy">
+  <Box
+    bgcolor="primary.main"
+    padding={3}
+    component="footer"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    width="100%"
+  >
+    <Link href="privacy">
       <Typography variant="h6" align="center">
         Privacy Policy
       </Typography>
     </Link>
-    <Link href="terms_of_service">
+    <Link href="tos">
       <Typography variant="h6" align="center">
         Terms of Service
       </Typography>
