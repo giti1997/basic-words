@@ -11,6 +11,7 @@ const Logo: FC<{ onClick?: () => void }> = ({ onClick }) => (
     justifyContent="center"
     marginY="10px"
     onClick={onClick}
+    sx={{ cursor: onClick ? 'pointer' : undefined }}
   >
     <LogoIcon width="min(35px, 8vw)" />
     <Typography variant="caption" marginLeft="10px">
