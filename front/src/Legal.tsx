@@ -82,12 +82,7 @@ const Legal: FC<{ type: string }> = ({ type }) => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Box width="100%" bgcolor="primary.main">
-        <Logo
-          onClick={() => {
-            console.log('here')
-            navigate('#')
-          }}
-        />
+        <Logo onClick={() => navigate('../')} />
       </Box>
       <Box
         display="flex"
