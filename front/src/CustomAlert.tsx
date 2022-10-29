@@ -1,11 +1,14 @@
 import { Alert, Button, Typography, alertClasses } from '@mui/material'
 import React, { FC } from 'react'
+import { useIntl } from 'react-intl'
 
 const CustomAlert: FC<{
   severity: string
   targetLanguage?: string
   onRetry?: () => void
 }> = ({ severity, targetLanguage, onRetry }) => {
+  const intl = useIntl()
+
   if (severity == 'warning') {
     return (
       <Alert
@@ -21,7 +24,10 @@ const CustomAlert: FC<{
         }}
       >
         <Typography variant="body1" color="inherit">
-          {`We're sorry, speech data is currently not available in ${targetLanguage}.`}
+          {intl.formatMessage(
+            { id: 'error-audio' },
+            { language: targetLanguage }
+          )}
         </Typography>
       </Alert>
     )
@@ -32,7 +38,7 @@ const CustomAlert: FC<{
         action={
           <Button color="inherit" onClick={onRetry}>
             <Typography variant="body1" color="inherit">
-              Try again
+              {intl.formatMessage({ id: 'try-again' })}
             </Typography>
           </Button>
         }
@@ -46,8 +52,7 @@ const CustomAlert: FC<{
         }}
       >
         <Typography variant="body1" color="inherit">
-          We're very sorry, there was an error loading the translation data.
-          Please try again.
+          {intl.formatMessage({ id: 'error-words' })}
         </Typography>
       </Alert>
     )
