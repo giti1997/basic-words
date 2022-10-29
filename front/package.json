@@ -13,6 +13,7 @@
     "react": "latest",
     "react-device-detect": "^2.2.2",
     "react-dom": "latest",
+    "react-intl": "^6.2.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "latest",
     "typescript": "latest"
