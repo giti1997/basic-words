@@ -69,14 +69,14 @@ const Home: FC = () => {
   }, [])
 
   const setSourceLanguageWithEffect = (language: string) => {
-    navigate(`/${languageToIso.get(language)}/${targetIso}`)
+    navigate(`/${languageToIso.get(language)}/${targetIso}`, { replace: true })
     setSourceWords(undefined)
     getWords(language).then((words) => {
       setSourceWords(words)
     })
   }
   const setTargetLanguageWithEffect = (language: string) => {
-    navigate(`/${sourceIso}/${languageToIso.get(language)}`)
+    navigate(`/${sourceIso}/${languageToIso.get(language)}`, { replace: true })
     setTargetWords(undefined)
     setAudios(undefined)
     getWords(language).then((words) => {
@@ -87,7 +87,7 @@ const Home: FC = () => {
   const switchLanguages = () => {
     setAudios(undefined)
     getAudios(sourceIso).then((audios) => setAudios(audios))
-    navigate(`/${targetIso}/${sourceIso}`)
+    navigate(`/${targetIso}/${sourceIso}`, { replace: true })
     setSourceWords(targetWords)
     setTargetWords(sourceWords)
   }
