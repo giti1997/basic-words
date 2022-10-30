@@ -16,12 +16,12 @@ const Footer: FC = () => {
       alignItems="center"
       width="100%"
     >
-      <Link href="privacy">
+      <Link href="/privacy">
         <Typography variant="h6" align="center">
           {intl.formatMessage({ id: 'privacy' })}
         </Typography>
       </Link>
-      <Link href="tos">
+      <Link href="/tos">
         <Typography variant="h6" align="center">
           {intl.formatMessage({ id: 'tos' })}
         </Typography>
