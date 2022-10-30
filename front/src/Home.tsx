@@ -1,15 +1,19 @@
 import { Box } from '@mui/system'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
+import { IntlProvider } from 'react-intl'
+import { useNavigate } from 'react-router-dom'
 
 import CustomAlert from './CustomAlert'
 import Footer from './Footer'
 import Title from './Title'
 import WordsList from './WordsList'
 import languages from './assets/languages.json'
+import getLanguages from './getLanguages'
+import getMessages from './getMessages'
 
-const getWords = (language: string): Promise<string[] | null> => {
+const getWords = (iso: string): Promise<string[] | null> => {
   const words =
-    language == 'English'
+    iso == 'en'
       ? ['Hello', 'Sorry', 'Please']
       : ['Bonjour', 'Pardon', "S'il vous plaît"]
 
@@ -20,7 +24,7 @@ const getWords = (language: string): Promise<string[] | null> => {
   })
 }
 
-const getAudios = (language: string): Promise<string[] | null> => {
+const getAudios = (iso: string): Promise<string[] | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(['', '', ''])
@@ -29,8 +33,8 @@ const getAudios = (language: string): Promise<string[] | null> => {
 }
 
 const Home: FC = () => {
-  const [sourceLanguage, setSourceLanguage] = useState('English')
-  const [targetLanguage, setTargetLanguage] = useState('French')
+  const { sourceIso, targetIso } = getLanguages()
+
   const [sourceWords, setSourceWords] = useState<string[] | undefined | null>(
     undefined
   )
@@ -39,25 +43,40 @@ const Home: FC = () => {
   )
   const [audios, setAudios] = useState<string[] | undefined | null>(undefined)
 
+  const [isoToLanguage, languageToIso, languagesList] = useMemo(() => {
+    const isoToLanguage = new Map(
+      languages.map(({ code, language }) => [code, language])
+    )
+    const languageToIso = new Map(
+      languages.map(({ code, language }) => [language, code])
+    )
+    const languagesList = languages.map(({ language }) => language)
+    return [isoToLanguage, languageToIso, languagesList]
+  }, [languages])
+
+  const navigate = useNavigate()
+  const sourceLanguage = isoToLanguage.get(sourceIso) ?? 'English'
+  const targetLanguage = isoToLanguage.get(targetIso) ?? 'English'
+
   useEffect(() => {
-    getWords(sourceLanguage).then((words) => {
+    getWords(sourceIso).then((words) => {
       setSourceWords(words)
     })
-    getWords(targetLanguage).then((words) => {
+    getWords(targetIso).then((words) => {
       setTargetWords(words)
     })
-    getAudios(targetLanguage).then((audios) => setAudios(audios))
+    getAudios(targetIso).then((audios) => setAudios(audios))
   }, [])
 
   const setSourceLanguageWithEffect = (language: string) => {
-    setSourceLanguage(language)
+    navigate(`/${languageToIso.get(language)}/${targetIso}`)
     setSourceWords(undefined)
     getWords(language).then((words) => {
       setSourceWords(words)
     })
   }
   const setTargetLanguageWithEffect = (language: string) => {
-    setTargetLanguage(language)
+    navigate(`/${sourceIso}/${languageToIso.get(language)}`)
     setTargetWords(undefined)
     setAudios(undefined)
     getWords(language).then((words) => {
@@ -66,23 +85,22 @@ const Home: FC = () => {
     getAudios(language).then((audios) => setAudios(audios))
   }
   const switchLanguages = () => {
-    setSourceLanguage(targetLanguage)
-    setTargetLanguage(sourceLanguage)
+    setAudios(undefined)
+    getAudios(sourceIso).then((audios) => setAudios(audios))
+    navigate(`/${targetIso}/${sourceIso}`)
     setSourceWords(targetWords)
     setTargetWords(sourceWords)
-    setAudios(undefined)
-    getAudios(targetLanguage).then((audios) => setAudios(audios))
   }
 
   return (
-    <main>
+    <IntlProvider locale={sourceIso} messages={getMessages(sourceIso)}>
       <Title
         sourceLanguage={sourceLanguage}
         targetLanguage={targetLanguage}
         setSourceLanguage={setSourceLanguageWithEffect}
         setTargetLanguage={setTargetLanguageWithEffect}
         switchLanguages={switchLanguages}
-        languages={languages}
+        languages={languagesList}
       />
       <Box
         display="flex"
@@ -116,7 +134,7 @@ const Home: FC = () => {
         )}
       </Box>
       <Footer />
-    </main>
+    </IntlProvider>
   )
 }
 

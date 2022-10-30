@@ -5,12 +5,13 @@ const messages: Record<string, Record<string, string>> = {
 }
 
 const getMessages = (language?: string): Record<string, string> => {
-  if (language == null || language === '') {
-    const defaultLanguage = navigator.language.split(/[-_]/)[0]
-    return messages[defaultLanguage]
-  } else {
-    return messages[language]
-  }
+  // if (language == null || language === '') {
+  //   const defaultLanguage = navigator.language.split(/[-_]/)[0]
+  //   return messages[defaultLanguage]
+  // } else {
+  //   return messages[language]
+  // }
+  return messages.en
 }
 
 export default getMessages
