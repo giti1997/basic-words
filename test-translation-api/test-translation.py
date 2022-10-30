@@ -31,10 +31,27 @@ import json
 json_file = open('lan-dict.json')
 lang = json.load(json_file)
 json_file.close()
- 
-g = open("hello.out", "a")
+
+s = {
+  "copyright": "All rights reserved",
+  "error-words": "We're very sorry, there was an error loading the translation data. Please try again.",
+  "error-audio": "We're sorry, speech data is currently not available in {language}.",
+  "privacy": "Privacy Policy",
+  "subtitle": "We grouped the most basic words you may need for a quick trip. In a clean and organized place, with audios included!",
+  "title": "Essential expressions for traveling to any country",
+  "try-again": "Try again",
+  "tos": "Terms of Service"
+}
+
+g = open("stat.json","w")
+dic = {}
 for x in lang:
-    g.write(translate_text(lang[x], "Hello!") + "\n")
-#    g.write("Hello!\n")
+    a = {}
+    for (key,text) in s.items():
+        a[key] = translate_text(lang[x], text)
+        # a[key] = text
+    dic[x] = a
+g.write(str(dic))
 g.close()
 
+# print(translate_text("sq","Hello!"))
