@@ -48,7 +48,7 @@ const useDialogHandles = (
   }
   const handleDialogClose = () => {
     if (isMobile) {
-      window.history.back()
+      // window.history.back()
     }
   }
 
