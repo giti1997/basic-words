@@ -48,7 +48,7 @@ const useDialogHandles = (
   }
   const handleDialogClose = () => {
     if (isMobile) {
-      // window.history.back()
+      window.history.back()
     }
   }
 
@@ -75,7 +75,6 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     onChange: (_: any, newValue: string | null) => {
       if (newValue) {
         setValue(newValue)
-        handleDialogClose()
       }
     },
     onInputChange: (
