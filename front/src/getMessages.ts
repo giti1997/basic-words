@@ -1,17 +1,11 @@
-import messages_en from './translations/en.json'
+import translations from './assets/translations.json'
 
-const messages: Record<string, Record<string, string>> = {
-  en: messages_en,
-}
-
-const getMessages = (language?: string): Record<string, string> => {
-  // if (language == null || language === '') {
-  //   const defaultLanguage = navigator.language.split(/[-_]/)[0]
-  //   return messages[defaultLanguage]
-  // } else {
-  //   return messages[language]
-  // }
-  return messages.en
+const getMessages = (code?: string): Record<string, string> => {
+  if (code && code in translations) {
+    return translations[code as keyof typeof translations]
+  } else {
+    return translations.en
+  }
 }
 
 export default getMessages
