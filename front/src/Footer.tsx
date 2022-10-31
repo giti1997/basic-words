@@ -28,9 +28,9 @@ const Footer: FC = () => {
       </Link>
 
       <Typography variant="h6" align="center" marginTop={2}>
-        {`\u00A9 ${intl.formatNumber(
-          new Date().getFullYear()
-        )} - ${intl.formatMessage({
+        {`\u00A9 ${intl.formatDate(new Date(), {
+          year: 'numeric',
+        })} - ${intl.formatMessage({
           id: 'copyright',
         })}`}
       </Typography>
