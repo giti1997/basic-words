@@ -28,10 +28,11 @@ const Footer: FC = () => {
       </Link>
 
       <Typography variant="h6" align="center" marginTop={2}>
-        {intl.formatMessage(
-          { id: 'copyright' },
-          { year: new Date().getFullYear() }
-        )}
+        {`\u00A9 ${intl.formatNumber(
+          new Date().getFullYear()
+        )} - ${intl.formatMessage({
+          id: 'copyright',
+        })}`}
       </Typography>
     </Box>
   )
