@@ -5,8 +5,9 @@ import { useIntl } from 'react-intl'
 const CustomAlert: FC<{
   severity: string
   targetLanguage?: string
+  typographySx: { direction: 'rtl' | 'lrt' }
   onRetry?: () => void
-}> = ({ severity, targetLanguage, onRetry }) => {
+}> = ({ severity, targetLanguage, typographySx, onRetry }) => {
   const intl = useIntl()
 
   if (severity == 'warning') {
@@ -23,7 +24,7 @@ const CustomAlert: FC<{
           },
         }}
       >
-        <Typography variant="body1" color="inherit">
+        <Typography variant="body1" color="inherit" sx={typographySx}>
           {intl.formatMessage(
             { id: 'error-audio' },
             { language: targetLanguage }
@@ -37,7 +38,7 @@ const CustomAlert: FC<{
         severity="error"
         action={
           <Button color="inherit" onClick={onRetry}>
-            <Typography variant="body1" color="inherit">
+            <Typography variant="body1" color="inherit" sx={typographySx}>
               {intl.formatMessage({ id: 'try-again' })}
             </Typography>
           </Button>
@@ -51,7 +52,7 @@ const CustomAlert: FC<{
           },
         }}
       >
-        <Typography variant="body1" color="inherit">
+        <Typography variant="body1" color="inherit" sx={typographySx}>
           {intl.formatMessage({ id: 'error-words' })}
         </Typography>
       </Alert>

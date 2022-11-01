@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { IntlProvider } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,9 +7,8 @@ import CustomAlert from './CustomAlert'
 import Footer from './Footer'
 import Title from './Title'
 import WordsList from './WordsList'
-import languages from './assets/languages.json'
-import getLanguages from './getLanguages'
 import getMessages from './getMessages'
+import useLanguages from './useLanguages'
 
 const getWords = (iso: string): Promise<string[] | null> => {
   const words =
@@ -33,7 +32,16 @@ const getAudios = (iso: string): Promise<string[] | null> => {
 }
 
 const Home: FC = () => {
-  const { sourceIso, targetIso } = getLanguages()
+  const navigate = useNavigate()
+  const {
+    sourceIso,
+    targetIso,
+    sourceLanguage,
+    targetLanguage,
+    languageToIso,
+    languagesList,
+    typographySx,
+  } = useLanguages()
 
   const [sourceWords, setSourceWords] = useState<string[] | undefined | null>(
     undefined
@@ -42,21 +50,6 @@ const Home: FC = () => {
     undefined
   )
   const [audios, setAudios] = useState<string[] | undefined | null>(undefined)
-
-  const [isoToLanguage, languageToIso, languagesList] = useMemo(() => {
-    const isoToLanguage = new Map(
-      languages.map(({ code, language }) => [code, language])
-    )
-    const languageToIso = new Map(
-      languages.map(({ code, language }) => [language, code])
-    )
-    const languagesList = languages.map(({ language }) => language)
-    return [isoToLanguage, languageToIso, languagesList]
-  }, [languages])
-
-  const navigate = useNavigate()
-  const sourceLanguage = isoToLanguage.get(sourceIso) ?? 'English'
-  const targetLanguage = isoToLanguage.get(targetIso) ?? 'English'
 
   useEffect(() => {
     getWords(sourceIso).then((words) => {
@@ -101,6 +94,7 @@ const Home: FC = () => {
         setTargetLanguage={setTargetLanguageWithEffect}
         switchLanguages={switchLanguages}
         languages={languagesList}
+        typographySx={typographySx}
       />
       <Box
         display="flex"
@@ -111,6 +105,7 @@ const Home: FC = () => {
         {sourceWords === null || targetWords === null ? (
           <CustomAlert
             severity="error"
+            typographySx={typographySx}
             onRetry={() => {
               if (sourceWords === null) {
                 setSourceLanguageWithEffect(sourceLanguage)
@@ -123,17 +118,22 @@ const Home: FC = () => {
         ) : (
           <>
             {audios === null && (
-              <CustomAlert severity="warning" targetLanguage={targetLanguage} />
+              <CustomAlert
+                severity="warning"
+                typographySx={typographySx}
+                targetLanguage={targetLanguage}
+              />
             )}
             <WordsList
               sourceWords={sourceWords}
               targetWords={targetWords}
+              typographySx={typographySx}
               audios={audios}
             />
           </>
         )}
       </Box>
-      <Footer />
+      <Footer typographySx={typographySx} />
     </IntlProvider>
   )
 }

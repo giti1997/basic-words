@@ -12,9 +12,15 @@ type Props = {
   sourceWords: string[] | undefined
   targetWords: string[] | undefined
   audios: string[] | undefined | null
+  typographySx: { direction: 'rtl' | 'lrt' }
 }
 
-const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
+const WordsList: FC<Props> = ({
+  sourceWords,
+  targetWords,
+  audios,
+  typographySx,
+}) => {
   const words = sourceWords
     ? sourceWords.map((sourceWord, i) => ({
         source: sourceWord,
@@ -53,7 +59,7 @@ const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
                 alignItems: 'center',
               }}
             >
-              <LoadableWord word={source} i={i} />
+              <LoadableWord word={source} i={i} typographySx={typographySx} />
             </CardContent>
             <Divider
               orientation="vertical"
@@ -81,7 +87,7 @@ const WordsList: FC<Props> = ({ sourceWords, targetWords, audios }) => {
                   },
                 }}
               >
-                <LoadableWord word={target} i={i} />
+                <LoadableWord word={target} i={i} typographySx={typographySx} />
               </CardContent>
               {audio !== null && (
                 <CardActions sx={{ position: 'absolute' }}>
