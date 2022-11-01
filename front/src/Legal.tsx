@@ -1,13 +1,10 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { FC } from 'react'
-import { IntlProvider } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
 
 import Footer from './Footer'
 import Logo from './Logo'
-import getLanguages from './getLanguages'
-import getMessages from './getMessages'
 
 const getPrivacy = () => (
   <>
@@ -80,33 +77,30 @@ const getTos = () => (
 )
 
 const Legal: FC<{ type: string }> = ({ type }) => {
-  const { sourceIso } = getLanguages()
   const navigate = useNavigate()
 
   return (
-    <IntlProvider locale={sourceIso} messages={getMessages(sourceIso)}>
-      <Box display="flex" flexDirection="column" alignItems="center">
-        <Box width="100%" bgcolor="primary.main">
-          <Logo onClick={() => navigate('../')} />
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          maxWidth="min(90%, 600px)"
-          width="100%"
-          textAlign="start"
-          marginY={10}
-        >
-          <Typography variant="h1" color="primary.main" marginBottom={2}>
-            {type === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
-          </Typography>
-          <Typography component="div" variant="body1" color="primary.main">
-            {type === 'privacy' ? getPrivacy() : getTos()}
-          </Typography>
-        </Box>
-        <Footer />
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Box width="100%" bgcolor="primary.main">
+        <Logo onClick={() => navigate('../')} />
       </Box>
-    </IntlProvider>
+      <Box
+        display="flex"
+        flexDirection="column"
+        maxWidth="min(90%, 600px)"
+        width="100%"
+        textAlign="start"
+        marginY={10}
+      >
+        <Typography variant="h1" color="primary.main" marginBottom={2}>
+          {type === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+        </Typography>
+        <Typography component="div" variant="body1" color="primary.main">
+          {type === 'privacy' ? getPrivacy() : getTos()}
+        </Typography>
+      </Box>
+      <Footer />
+    </Box>
   )
 }
 

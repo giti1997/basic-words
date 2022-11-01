@@ -4,14 +4,15 @@ import React, { FC } from 'react'
 type Props = {
   word: string | undefined
   i: number
+  typographySx: { direction: 'rtl' | 'lrt' }
 }
 
-const LoadableWord: FC<Props> = ({ word, i }) => {
+const LoadableWord: FC<Props> = ({ word, i, typographySx }) => {
   const skeletonColor = i % 2 ? 'secondary.light' : 'secondary.dark'
   const fontVariant = i % 2 ? 'body1' : 'body2'
   if (word) {
     return (
-      <Typography variant={fontVariant} textAlign="center">
+      <Typography variant={fontVariant} textAlign="center" sx={typographySx}>
         {word}
       </Typography>
     )

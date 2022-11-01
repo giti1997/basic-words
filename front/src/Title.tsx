@@ -15,6 +15,7 @@ type Props = {
   setTargetLanguage: (value: string) => void
   switchLanguages: () => void
   languages: string[]
+  typographySx: { direction: 'rtl' | 'lrt' }
 }
 
 const Title: FC<Props> = ({
@@ -24,6 +25,7 @@ const Title: FC<Props> = ({
   setTargetLanguage,
   switchLanguages,
   languages,
+  typographySx,
 }) => {
   const intl = useIntl()
 
@@ -40,7 +42,7 @@ const Title: FC<Props> = ({
       <Box width="100%" maxWidth="min(90%, 600px)">
         <Logo />
         <Box marginTop="15vh" marginBottom="15vh">
-          <Typography variant="h1" align="center">
+          <Typography variant="h1" align="center" sx={typographySx}>
             {intl.formatMessage({ id: 'title' })}
           </Typography>
           <Typography
@@ -48,6 +50,7 @@ const Title: FC<Props> = ({
             align="center"
             paragraph
             marginTop={2}
+            sx={typographySx}
           >
             {intl.formatMessage({ id: 'subtitle' })}
           </Typography>
