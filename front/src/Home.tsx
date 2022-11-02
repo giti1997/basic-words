@@ -118,11 +118,7 @@ const Home: FC = () => {
         ) : (
           <>
             {audios === null && (
-              <CustomAlert
-                severity="warning"
-                typographySx={typographySx}
-                targetLanguage={targetLanguage}
-              />
+              <CustomAlert severity="warning" typographySx={typographySx} />
             )}
             <WordsList
               sourceWords={sourceWords}

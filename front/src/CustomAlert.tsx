@@ -4,10 +4,9 @@ import { useIntl } from 'react-intl'
 
 const CustomAlert: FC<{
   severity: string
-  targetLanguage?: string
   typographySx: { direction: 'rtl' | 'lrt' }
   onRetry?: () => void
-}> = ({ severity, targetLanguage, typographySx, onRetry }) => {
+}> = ({ severity, typographySx, onRetry }) => {
   const intl = useIntl()
 
   if (severity == 'warning') {
@@ -25,10 +24,7 @@ const CustomAlert: FC<{
         }}
       >
         <Typography variant="body1" color="inherit" sx={typographySx}>
-          {intl.formatMessage(
-            { id: 'error-audio' },
-            { language: targetLanguage }
-          )}
+          {intl.formatMessage({ id: 'error-audio' })}
         </Typography>
       </Alert>
     )

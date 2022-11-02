@@ -262,8 +262,10 @@
   "en": {
     "copyright": "All rights reserved",
     "error-words": "We're very sorry, there was an error loading the translation data. Please try again.",
-    "error-audio": "We're sorry, speech data is currently not available in {language}.",
+    "error-audio": "We're sorry, speech data is currently not available in the target language.",
+    "no-options": "No options",
     "privacy": "Privacy Policy",
+    "search": "Search languages",
     "subtitle": "We grouped the most basic words you may need for a quick trip. In a clean and organized place, with audios included!",
     "title": "Essential expressions for traveling to any country",
     "try-again": "Try again",

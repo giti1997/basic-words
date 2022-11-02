@@ -15,6 +15,7 @@ import {
 import { Box } from '@mui/system'
 import React, { FC, useState } from 'react'
 import { isMobile } from 'react-device-detect'
+import { useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 type Props = {
@@ -56,13 +57,12 @@ const useDialogHandles = (
 }
 
 const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
+  const intl = useIntl()
   const [inputValue, setInputValue] = useState(value)
   const { dialogOpen, handleDialogOpen, handleDialogClose } = useDialogHandles(
     id,
     setInputValue
   )
-  const placeholder = 'Search languages'
-  const noOptions = 'No options'
 
   // Common for mobile and desktop
   const commonProps = {
@@ -92,11 +92,18 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
       <TextField
         {...params}
         variant="standard"
-        placeholder={placeholder}
+        placeholder={intl.formatMessage({ id: 'search' })}
         sx={isMobile ? { position: 'fixed', backgroundColor: 'white' } : null}
       />
     ),
-    noOptionsText: <Box marginLeft="54px">{noOptions}</Box>,
+    noOptionsText: (
+      <Box
+        marginLeft={isMobile ? '54px' : undefined}
+        textAlign={isMobile ? 'left' : 'center'}
+      >
+        {intl.formatMessage({ id: 'no-options' })}
+      </Box>
+    ),
   }
 
   if (isMobile) {
@@ -210,19 +217,21 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
               translate: '-50px',
             },
           },
-          popper: {
-            sx: {
-              [`& .${autocompleteClasses.option}`]: {
-                justifyContent: 'center',
-                textAlign: 'center',
-              },
-            },
+        }}
+        renderOption={(props, option) => (
+          <li {...props} style={{ justifyContent: 'center' }}>
+            {option}
+          </li>
+        )}
+        ListboxProps={{
+          style: {
+            overflow: 'overlay',
           },
         }}
         sx={{
           width: '200px',
           [`& .${inputLabelClasses.root}`]: { color: 'primary.light' },
-          [`& .${inputClasses.input}`]: { textAlign: 'center' },
+          [`& .${inputClasses.input}`]: { textAlign: 'center', marginLeft: '4px' },
           [`& .${inputClasses.root}:before`]: {
             borderBottom: 0,
           },
