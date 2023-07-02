@@ -37,8 +37,8 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: 'min(20px, 4vw)',
-      fontWeight: 'lighter',
-      color: DEFAULT_COLORS.gainsboro,
+      fontWeight: 'normal',
+      color: DEFAULT_COLORS.lightGray,
     },
     body1: {
       fontSize: 'min(20px, 4vw)',

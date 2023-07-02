@@ -110,8 +110,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
     return (
       <>
         <Button
-          fullWidth
-          sx={{ height: '100%' }}
+          sx={{ width: 'min(30vw, 200px)', height: '100%' }}
           onClick={(e) => {
             handleDialogOpen()
             e.currentTarget.blur()

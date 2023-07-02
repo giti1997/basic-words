@@ -7,9 +7,9 @@ const SEO = ({
   iso,
   isoList,
 }: {
-  page: string
-  iso: string
-  isoList: string[]
+  page: 'home' | 'privacy' | 'tos'
+  iso?: string
+  isoList?: string[]
 }) => {
   const intl = useIntl()
 
@@ -25,7 +25,7 @@ const SEO = ({
         <meta name="og:url" content={'https://basic-words.com'} />
         {/* <meta name="og:locale" content={'en_US'} /> */}
         <meta name="og:description" content={description} />
-        {isoList.map(
+        {isoList?.map(
           (newIso) =>
             newIso !== iso && (
               <link
@@ -41,7 +41,7 @@ const SEO = ({
   } else {
     return (
       <Helmet>
-        <title>{`${page} - ebookcompressor.com`}</title>
+        <title>{`${page} - basic-words.com`}</title>
       </Helmet>
     )
   }

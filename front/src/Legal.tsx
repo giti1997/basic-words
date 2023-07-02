@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Footer from './Footer'
 import Logo from './Logo'
+import SEO from './SEO'
 
 const getPrivacy = () => (
   <>
@@ -75,11 +76,12 @@ const getTos = () => (
   </>
 )
 
-const Legal: FC<{ type: string }> = ({ type }) => {
+const Legal: FC<{ type: 'privacy' | 'tos' }> = ({ type }) => {
   const navigate = useNavigate()
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
+      <SEO page={type} />
       <Box width="100%" bgcolor="primary.main">
         <Logo onClick={() => navigate('../')} />
       </Box>

@@ -2,6 +2,7 @@ import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import React, { FC } from 'react'
+import { isMobile } from 'react-device-detect'
 import { useIntl } from 'react-intl'
 
 const Footer: FC<{ typographySx?: { direction: 'rtl' | 'lrt' } }> = ({
@@ -17,6 +18,7 @@ const Footer: FC<{ typographySx?: { direction: 'rtl' | 'lrt' } }> = ({
       flexDirection="column"
       alignItems="center"
       width="100%"
+      gap={isMobile ? '15px' : undefined}
     >
       <Link href="/privacy">
         <Typography variant="body2" align="center" sx={typographySx}>
@@ -29,7 +31,12 @@ const Footer: FC<{ typographySx?: { direction: 'rtl' | 'lrt' } }> = ({
         </Typography>
       </Link>
 
-      <Typography variant="body2" align="center" marginTop={2} sx={typographySx}>
+      <Typography
+        variant="body2"
+        align="center"
+        marginTop={2}
+        sx={typographySx}
+      >
         {`\u00A9 ${intl.formatDate(new Date(), {
           year: 'numeric',
         })} - ${intl.formatMessage({

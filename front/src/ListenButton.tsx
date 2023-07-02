@@ -58,9 +58,8 @@ const ListenButton: FC<{
       >
         <CircularProgress
           size="50%"
-          sx={{
-            color: iconColor,
-          }}
+          aria-label="loading-audio"
+          sx={{ color: iconColor }}
         />
       </Avatar>
     )
@@ -75,7 +74,7 @@ const ListenButton: FC<{
             }, 1000)
           }
         }}
-        aria-label="listen"
+        aria-label="audio"
         sx={{
           backgroundColor: iconBackgroundColor,
           '&:hover': {
