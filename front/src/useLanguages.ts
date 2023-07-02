@@ -62,6 +62,7 @@ const useLanguages = (): {
   targetLanguage: string
   languageToIso: Map<string, string>
   languagesList: string[]
+  isoList: string[]
   typographySx: { direction: 'rtl' | 'lrt' }
 } => {
   const { sourceIso, targetIso } = getLanguages()
@@ -69,7 +70,7 @@ const useLanguages = (): {
     direction: 'rtl' | 'lrt'
   }
 
-  const [isoToLanguage, languageToIso, languagesList] = useMemo(() => {
+  const [isoToLanguage, languageToIso, languagesList, isoList] = useMemo(() => {
     const isoToLanguage = new Map(
       languages.map(({ code, language }) => [code, language])
     )
@@ -77,7 +78,8 @@ const useLanguages = (): {
       languages.map(({ code, language }) => [language, code])
     )
     const languagesList = languages.map(({ language }) => language)
-    return [isoToLanguage, languageToIso, languagesList]
+    const isoList = languages.map(({ code }) => code)
+    return [isoToLanguage, languageToIso, languagesList, isoList]
   }, [languages])
 
   const sourceLanguage = isoToLanguage.get(sourceIso) ?? 'English'
@@ -90,6 +92,7 @@ const useLanguages = (): {
     targetLanguage,
     languageToIso,
     languagesList,
+    isoList,
     typographySx,
   }
 }

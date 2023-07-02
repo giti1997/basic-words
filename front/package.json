@@ -1,7 +1,7 @@
 {
   "name": "basic-words",
   "version": "0.0.1",
-  "homepage": "http://basic-words.com",
+  "homepage": "https://basic-words.com",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
@@ -13,6 +13,7 @@
     "react": "latest",
     "react-device-detect": "^2.2.2",
     "react-dom": "latest",
+    "react-helmet": "^6.1.0",
     "react-intl": "^6.2.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "latest",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@types/react-helmet": "^6.1.6",
     "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   }

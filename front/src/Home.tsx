@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import CustomAlert from './CustomAlert'
 import Footer from './Footer'
+import SEO from './SEO'
 import Title from './Title'
 import WordsList from './WordsList'
 import getMessages from './getMessages'
@@ -40,6 +41,7 @@ const Home: FC = () => {
     targetLanguage,
     languageToIso,
     languagesList,
+    isoList,
     typographySx,
   } = useLanguages()
 
@@ -87,6 +89,7 @@ const Home: FC = () => {
 
   return (
     <IntlProvider locale={sourceIso} messages={getMessages(sourceIso)}>
+      <SEO iso={sourceIso} page="home" isoList={isoList}></SEO>
       <Title
         sourceLanguage={sourceLanguage}
         targetLanguage={targetLanguage}
