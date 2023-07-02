@@ -1,0 +1,28 @@
+name: Deploy Back
+
+on:
+  push:
+    branches: ['main', 'backend']
+
+permissions:
+  contents: 'write'
+
+jobs:
+  deploy:
+    # concurrency: ci-${{ github.ref }}
+    # environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+
+      - name: Build
+        run: docker build --tag gcr.io/basic-words/server .
+
+      - name: Deploy
+        run: |
+          gcloud builds submit --tag gcr.io/basic-words/server
+          gcloud run deploy server --image gcr.io/basic-words/server --platform managed --region us-central1 --allow-unauthenticated --port 8000
