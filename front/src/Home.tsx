@@ -1,3 +1,5 @@
+import { Box } from '@mui/material'
+import axios from 'axios'
 import React, { FC, useEffect, useState } from 'react'
 import { IntlProvider } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
@@ -9,19 +11,11 @@ import Title from './Title'
 import WordsList from './WordsList'
 import getMessages from './getMessages'
 import useLanguages from './useLanguages'
-import { Box } from '@mui/material'
 
 const getWords = (iso: string): Promise<string[] | null> => {
-  const words =
-    iso == 'en'
-      ? ['Hello', 'Sorry', 'Please']
-      : ['Bonjour', 'Pardon', "S'il vous plaît"]
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(words)
-    }, 1000)
-  })
+  return axios
+    .get(`https://server-yubojkqmlq-uc.a.run.app/${iso}`)
+    .then((response) => response.data)
 }
 
 const getAudios = (iso: string): Promise<string[] | null> => {
@@ -64,20 +58,22 @@ const Home: FC = () => {
   }, [])
 
   const setSourceLanguageWithEffect = (language: string) => {
+    const iso = languageToIso.get(language) ?? 'en'
     navigate(`/${languageToIso.get(language)}/${targetIso}`, { replace: true })
     setSourceWords(undefined)
-    getWords(language).then((words) => {
+    getWords(iso).then((words) => {
       setSourceWords(words)
     })
   }
   const setTargetLanguageWithEffect = (language: string) => {
-    navigate(`/${sourceIso}/${languageToIso.get(language)}`, { replace: true })
+    const iso = languageToIso.get(language) ?? 'en'
+    navigate(`/${sourceIso}/${iso}`, { replace: true })
     setTargetWords(undefined)
     setAudios(undefined)
-    getWords(language).then((words) => {
+    getWords(iso).then((words) => {
       setTargetWords(words)
     })
-    getAudios(language).then((audios) => setAudios(audios))
+    getAudios(iso).then((audios) => setAudios(audios))
   }
   const switchLanguages = () => {
     setAudios(undefined)
