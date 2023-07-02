@@ -2,6 +2,7 @@ import { ArrowBack, Check } from '@mui/icons-material'
 import {
   Autocomplete,
   AutocompleteInputChangeReason,
+  Box,
   Button,
   Dialog,
   IconButton,
@@ -12,7 +13,6 @@ import {
   inputClasses,
   inputLabelClasses,
 } from '@mui/material'
-import { Box } from '@mui/system'
 import React, { FC, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { useIntl } from 'react-intl'
@@ -231,7 +231,10 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
         sx={{
           width: '200px',
           [`& .${inputLabelClasses.root}`]: { color: 'primary.light' },
-          [`& .${inputClasses.input}`]: { textAlign: 'center', marginLeft: '4px' },
+          [`& .${inputClasses.input}`]: {
+            textAlign: 'center',
+            marginLeft: '4px',
+          },
           [`& .${inputClasses.root}:before`]: {
             borderBottom: 0,
           },

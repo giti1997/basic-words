@@ -1,4 +1,3 @@
-import { Box } from '@mui/system'
 import React, { FC, useEffect, useState } from 'react'
 import { IntlProvider } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
@@ -10,6 +9,7 @@ import Title from './Title'
 import WordsList from './WordsList'
 import getMessages from './getMessages'
 import useLanguages from './useLanguages'
+import { Box } from '@mui/material'
 
 const getWords = (iso: string): Promise<string[] | null> => {
   const words =
