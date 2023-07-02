@@ -35,7 +35,7 @@ const Title: FC<Props> = ({
       flexDirection="column"
       alignItems="center"
       sx={{
-        backgroundImage: 'url(/background.jpeg)',
+        backgroundImage: 'url(/background.webp)',
         backgroundSize: 'cover',
       }}
     >

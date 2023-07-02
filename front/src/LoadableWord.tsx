@@ -9,10 +9,10 @@ type Props = {
 
 const LoadableWord: FC<Props> = ({ word, i, typographySx }) => {
   const skeletonColor = i % 2 ? 'secondary.light' : 'secondary.dark'
-  const fontVariant = i % 2 ? 'body1' : 'body2'
+  const color = i % 2 ? 'primary.main' : 'white'
   if (word) {
     return (
-      <Typography variant={fontVariant} textAlign="center" sx={typographySx}>
+      <Typography variant="body1" color={color} textAlign="center" sx={typographySx}>
         {word}
       </Typography>
     )

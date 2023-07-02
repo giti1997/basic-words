@@ -29,15 +29,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto, Arial',
     h1: {
       fontSize: 'min(42px, 7vw)',
       fontWeight: 'bold',
-      color: DEFAULT_COLORS.white,
-    },
-    h6: {
-      fontSize: 'min(16px, 3vw)',
-      fontWeight: 'normal',
       color: DEFAULT_COLORS.white,
     },
     subtitle1: {
@@ -51,7 +46,7 @@ const theme = createTheme({
       color: DEFAULT_COLORS.richBlack,
     },
     body2: {
-      fontSize: 'min(20px, 4vw)',
+      fontSize: 'min(16px, 3vw)',
       fontWeight: 'normal',
       color: DEFAULT_COLORS.white,
     },

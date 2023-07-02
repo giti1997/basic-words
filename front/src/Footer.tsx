@@ -19,17 +19,17 @@ const Footer: FC<{ typographySx?: { direction: 'rtl' | 'lrt' } }> = ({
       width="100%"
     >
       <Link href="/privacy">
-        <Typography variant="h6" align="center" sx={typographySx}>
+        <Typography variant="body2" align="center" sx={typographySx}>
           {intl.formatMessage({ id: 'privacy' })}
         </Typography>
       </Link>
       <Link href="/tos">
-        <Typography variant="h6" align="center" sx={typographySx}>
+        <Typography variant="body2" align="center" sx={typographySx}>
           {intl.formatMessage({ id: 'tos' })}
         </Typography>
       </Link>
 
-      <Typography variant="h6" align="center" marginTop={2} sx={typographySx}>
+      <Typography variant="body2" align="center" marginTop={2} sx={typographySx}>
         {`\u00A9 ${intl.formatDate(new Date(), {
           year: 'numeric',
         })} - ${intl.formatMessage({
