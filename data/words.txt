@@ -1,2 +1,10 @@
 Hello!
 How are you?
+Sorry
+Please
+Excuse me
+yes
+no
+thank you
+How much
+Bye
