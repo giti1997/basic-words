@@ -1,10 +1,8 @@
 import { ArrowBack, Check } from '@mui/icons-material'
 import {
-  Autocomplete,
   AutocompleteInputChangeReason,
   Box,
   Button,
-  Dialog,
   IconButton,
   TextField,
   TextFieldProps,
@@ -13,10 +11,19 @@ import {
   inputClasses,
   inputLabelClasses,
 } from '@mui/material'
-import React, { FC, useState } from 'react'
+import React, { FC, ReactNode, Suspense, lazy, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
+
+const [Autocomplete, Dialog] = [
+  isMobile
+    ? lazy(() => import('@mui/material/Autocomplete'))
+    : require('@mui/material/Autocomplete').default,
+  isMobile
+    ? lazy(() => import('@mui/material/Dialog'))
+    : require('@mui/material/Dialog').default,
+]
 
 type Props = {
   id: string
@@ -120,87 +127,93 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             {value}
           </Typography>
         </Button>
-        <Dialog
-          fullScreen
-          open={dialogOpen}
-          onClose={handleDialogClose}
-          PaperProps={{ style: { overflowY: 'hidden' } }}
-        >
-          <Box display="flex" alignItems="center">
-            <IconButton
-              color="inherit"
-              onClick={handleDialogClose}
-              aria-label="close"
-              sx={{
-                position: 'fixed',
-                zIndex: 1,
-                marginLeft: '15px',
-                width: '40px',
-                color: 'primary.light',
-                marginTop: '60px',
-              }}
-            >
-              <ArrowBack />
-            </IconButton>
-            <Autocomplete
-              {...commonProps}
-              open
-              onAnimationStart={() => {
-                document.getElementById(`${id}-option-0`)?.scrollIntoView()
-                document.getElementById(id)?.focus()
-              }}
-              renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                  <Check
-                    sx={{
-                      visibility: selected ? 'visible' : 'hidden',
-                      width: '40px',
-                      marginRight: '15px',
-                      color: 'primary.light',
-                    }}
-                  />
-                  {option}
-                </li>
-              )}
-              componentsProps={{
-                paper: {
-                  sx: {
-                    borderRadius: '0px',
-                    boxShadow: 0,
-                    height: '100%',
-                    [`& .${autocompleteClasses.noOptions}`]: {
+        <Suspense>
+          <Dialog
+            fullScreen
+            open={dialogOpen}
+            onClose={handleDialogClose}
+            PaperProps={{ style: { overflowY: 'hidden' } }}
+          >
+            <Box display="flex" alignItems="center">
+              <IconButton
+                color="inherit"
+                onClick={handleDialogClose}
+                aria-label="close"
+                sx={{
+                  position: 'fixed',
+                  zIndex: 1,
+                  marginLeft: '15px',
+                  width: '40px',
+                  color: 'primary.light',
+                  marginTop: '60px',
+                }}
+              >
+                <ArrowBack />
+              </IconButton>
+              <Autocomplete
+                {...commonProps}
+                open
+                onAnimationStart={() => {
+                  document.getElementById(`${id}-option-0`)?.scrollIntoView()
+                  document.getElementById(id)?.focus()
+                }}
+                renderOption={(
+                  props: any,
+                  option: ReactNode,
+                  { selected }: { selected: boolean }
+                ) => (
+                  <li {...props}>
+                    <Check
+                      sx={{
+                        visibility: selected ? 'visible' : 'hidden',
+                        width: '40px',
+                        marginRight: '15px',
+                        color: 'primary.light',
+                      }}
+                    />
+                    {option}
+                  </li>
+                )}
+                componentsProps={{
+                  paper: {
+                    sx: {
+                      borderRadius: '0px',
+                      boxShadow: 0,
+                      height: '100%',
+                      [`& .${autocompleteClasses.noOptions}`]: {
+                        height: '100%',
+                      },
+                    },
+                  },
+                  popper: {
+                    sx: {
                       height: '100%',
                     },
                   },
-                },
-                popper: {
-                  sx: {
-                    height: '100%',
+                }}
+                ListboxProps={{
+                  style: {
+                    maxHeight: '100%',
+                    height: 'calc(100% - 60px)',
+                    width: '100%',
+                    position: 'absolute',
+                    paddingTop: 0,
                   },
-                },
-              }}
-              ListboxProps={{
-                style: {
-                  maxHeight: '100%',
-                  height: 'calc(100% - 60px)',
-                  width: '100%',
-                  position: 'absolute',
-                  paddingTop: 0,
-                },
-              }}
-              sx={{
-                [`& .${inputClasses.root}`]: {
-                  paddingLeft: '70px',
-                  height: '60px',
-                  color: 'primary.main',
-                },
-                [`& .${inputClasses.root}:after`]: {
-                  borderBottom: 0,
-                },
-              }}
-            />
-          </Box>
-        </Dialog>
+                }}
+                sx={{
+                  [`& .${inputClasses.root}`]: {
+                    paddingLeft: '70px',
+                    height: '60px',
+                    color: 'primary.main',
+                  },
+                  [`& .${inputClasses.root}:after`]: {
+                    borderBottom: 0,
+                  },
+                }}
+              />
+            </Box>
+          </Dialog>
+        </Suspense>
       </>
     )
   } else {
@@ -217,7 +230,7 @@ const CustomAutocomplete: FC<Props> = ({ id, value, setValue, options }) => {
             },
           },
         }}
-        renderOption={(props, option) => (
+        renderOption={(props: any, option: ReactNode) => (
           <li {...props} style={{ justifyContent: 'center' }}>
             {option}
           </li>
