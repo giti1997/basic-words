@@ -16,13 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Set up Python
-      #   uses: actions/setup-python@v4
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: Build
-        run: docker build --tag gcr.io/basic-words/server .
+        run: gcloud builds submit backend --tag gcr.io/basic-words/server
+
+        # docker build --tag gcr.io/basic-words/server backend/
 
       - name: Deploy
-        run: |
-          gcloud builds submit --tag gcr.io/basic-words/server
-          gcloud run deploy server --image gcr.io/basic-words/server --platform managed --region us-central1 --allow-unauthenticated --port 8000
+        run: gcloud run deploy server --image gcr.io/basic-words/server --platform managed --region us-central1 --allow-unauthenticated --port 8000
